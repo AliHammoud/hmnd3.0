@@ -14,14 +14,122 @@
 
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // —— Header solid on scroll ——
+  // —— Header floating dock: frosted while scrolled, hidden over cinematic ——
   const header = document.getElementById("site-header");
-  function onScrollHeader() {
-    if (!header) return;
-    header.classList.toggle("is-solid", window.scrollY > 80);
+  const cinematicSections = document.querySelectorAll(".cinematic");
+
+  function isOverCinematic() {
+    for (const section of cinematicSections) {
+      const next = section.nextElementSibling;
+      if (!next) continue;
+
+      const sectionRect = section.getBoundingClientRect();
+      const nextRect = next.getBoundingClientRect();
+
+      // Hide from cinematic entry until the following section reaches the top edge
+      const cinematicEntered = sectionRect.top < window.innerHeight;
+      const nextAtTop = nextRect.top <= 0;
+
+      if (cinematicEntered && !nextAtTop) return true;
+    }
+    return false;
   }
-  onScrollHeader();
-  window.addEventListener("scroll", onScrollHeader, { passive: true });
+
+  function updateHeaderDock() {
+    if (!header) return;
+    const overCinematic = isOverCinematic();
+    header.classList.toggle("is-over-cinematic", overCinematic);
+    header.classList.toggle("is-dock-visible", window.scrollY > 0 && !overCinematic);
+  }
+
+  updateHeaderDock();
+  window.addEventListener("scroll", updateHeaderDock, { passive: true });
+  window.addEventListener("resize", updateHeaderDock, { passive: true });
+
+  // —— Cinematic sections: scroll-pinned reveal ——
+  const CINEMATIC_STEP_VH = 32;
+
+  function formatProofCount(value) {
+    const n = Math.round(value);
+    if (n >= 1000) return `$${Math.round(n / 1000)}K`;
+    return `$${n.toLocaleString("en-US")}`;
+  }
+
+  function updateCinematicCount(line, progress) {
+    const end = Number(line.dataset.countEnd);
+    if (!Number.isFinite(end)) return;
+    line.textContent = formatProofCount(end * progress);
+  }
+
+  function getCinematicLineProgress(line, lines, progress) {
+    if (line.dataset.revealStart !== undefined || line.dataset.revealEnd !== undefined) {
+      const start = parseFloat(line.dataset.revealStart) || 0;
+      const end = parseFloat(line.dataset.revealEnd ?? "1");
+      const span = Math.max(end - start, 0.001);
+      return Math.min(1, Math.max(0, (progress - start) / span));
+    }
+
+    const seqLines = [...lines].filter(
+      (node) => node.dataset.revealStart === undefined && node.dataset.revealEnd === undefined
+    );
+    const seqIndex = seqLines.indexOf(line);
+    const step = 1 / seqLines.length;
+    const start = seqIndex * step;
+    return Math.min(1, Math.max(0, (progress - start) / step));
+  }
+
+  function initCinematic() {
+    if (!cinematicSections.length) return;
+
+    cinematicSections.forEach((section) => {
+      const lines = section.querySelectorAll(".cinematic__line");
+      if (!lines.length) return;
+
+      if (reduceMotion) {
+        section.classList.add("is-complete");
+        lines.forEach((line) => {
+          line.style.setProperty("--line-progress", "1");
+          updateCinematicCount(line, 1);
+        });
+        return;
+      }
+
+      const runwayVh = Math.max(0, lines.length - 1) * CINEMATIC_STEP_VH;
+      section.style.setProperty("--cinematic-height", `${100 + runwayVh}vh`);
+
+      function updateSection() {
+        const rect = section.getBoundingClientRect();
+        const sectionTop = window.scrollY + rect.top;
+        const scrollRange = section.offsetHeight - window.innerHeight;
+
+        if (scrollRange <= 0) {
+          section.classList.add("is-complete");
+          lines.forEach((line) => {
+            line.style.setProperty("--line-progress", "1");
+            updateCinematicCount(line, 1);
+          });
+          return;
+        }
+
+        const scrolled = window.scrollY - sectionTop;
+        const progress = Math.min(1, Math.max(0, scrolled / scrollRange));
+
+        lines.forEach((line) => {
+          const local = getCinematicLineProgress(line, lines, progress);
+          line.style.setProperty("--line-progress", String(local));
+          updateCinematicCount(line, local);
+        });
+
+        section.classList.toggle("is-complete", progress >= 0.995);
+      }
+
+      updateSection();
+      window.addEventListener("scroll", updateSection, { passive: true });
+      window.addEventListener("resize", updateSection, { passive: true });
+    });
+  }
+
+  initCinematic();
 
   // —— Mobile nav ——
   const toggle = document.getElementById("nav-toggle");
@@ -134,6 +242,66 @@
     });
   }
   initReveal();
+
+  // —— Year counter: animate from current year to target ——
+  function initYearCounter() {
+    const nodes = document.querySelectorAll("[data-year-end]");
+    if (!nodes.length) return;
+
+    function setCurrentYear(el) {
+      el.textContent = String(new Date().getFullYear());
+    }
+
+    function animateYear(el) {
+      const target = Number(el.dataset.yearEnd);
+      if (!Number.isFinite(target)) return;
+
+      const startYear = new Date().getFullYear();
+      el.textContent = String(startYear);
+
+      if (reduceMotion || target === startYear) {
+        el.textContent = String(target);
+        return;
+      }
+
+      const duration = Math.min(1400, 240 + Math.abs(target - startYear) * 90);
+      const t0 = performance.now();
+
+      function frame(now) {
+        const t = Math.min(1, (now - t0) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const value = Math.round(startYear + (target - startYear) * eased);
+        el.textContent = String(value);
+        if (t < 1) requestAnimationFrame(frame);
+        else el.textContent = String(target);
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    nodes.forEach(setCurrentYear);
+
+    if (reduceMotion) {
+      nodes.forEach((el) => {
+        el.textContent = el.dataset.yearEnd;
+      });
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          animateYear(entry.target);
+          io.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -8% 0px", threshold: 0.2 }
+    );
+
+    nodes.forEach((el) => io.observe(el));
+  }
+  initYearCounter();
 
   // —— Local time GMT+3 ——
   const timeEl = document.getElementById("local-time");
