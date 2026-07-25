@@ -1,0 +1,119 @@
+{
+  "meta": {
+    "name": "HMND Design System v0.2",
+    "mode": "light-only",
+    "philosophy": "frontier, not corporate; recognise, not impress"
+  },
+  "color": {
+    "bg": "#f7f7f4",
+    "text": "#131311",
+    "text-muted": "#6b6b68",
+    "accent": "#8dff6a",
+    "surface-dark": "#111110",
+    "border": "#e2e2dd",
+    "accent-usage-rule": "Appears max 4 times per viewport: cursor glow, one word in hero, CTA button, one section marker. Never as a background fill."
+  },
+  "typography": {
+    "display": {
+      "font": "IBM Plex Mono",
+      "why": "Technical, lab-report credibility. Free, self-hostable, wide weight range. Used by Tangram-adjacent biotech sites \u2014 proven in category without being Inter-level overused.",
+      "weight": 500,
+      "usage": "H1, H2, logo wordmark, section markers, nav"
+    },
+    "body": {
+      "font": "General Sans",
+      "why": "Warmer and more human than Plex Mono without being generic \u2014 avoids the sterile feel of pairing two mono/geometric faces together.",
+      "weight": 400,
+      "usage": "paragraph, microcopy, contact form, footer"
+    },
+    "pairing_rule": "Never mix a third font. Numerals in body copy fall back to tabular Plex Mono via font-feature for data/dates only.",
+    "scale": {
+      "hero": "clamp(2.75rem, 6.5vw, 6rem)",
+      "h2": "clamp(1.875rem, 3.5vw, 2.75rem)",
+      "h3": "1.375rem",
+      "body-lg": "1.125rem",
+      "body": "1rem",
+      "small": "0.8125rem",
+      "micro-label": "0.6875rem / uppercase / letter-spacing +0.1em"
+    },
+    "line-height": {
+      "display": 1.02,
+      "body": 1.55
+    },
+    "measure": "65ch max for body paragraphs \u2014 never full-bleed text blocks"
+  },
+  "spacing": {
+    "base-unit": "8px",
+    "scale": [
+      8,
+      16,
+      24,
+      32,
+      48,
+      64,
+      80,
+      120,
+      160
+    ],
+    "section-padding-y": "clamp(96px, 12vw, 160px)",
+    "container-max": "1180px",
+    "gutter": "clamp(24px, 5vw, 64px)",
+    "rule": "No section ever uses a spacing value outside this scale. No arbitrary px."
+  },
+  "grid": {
+    "type": "12-column, but broken deliberately",
+    "hero": "asymmetric 7/5 split \u2014 headline left-weighted, imagery bleeds right past container edge",
+    "who-we-are": "8/4 \u2014 prose left, single stat or citation right",
+    "approach": "full-width numbered list, no cards, hairline dividers between items",
+    "vision": "3-up feed cards, but unequal heights (masonry-lite, not uniform grid)",
+    "rule": "At least one section per page must break the 12-col symmetry intentionally"
+  },
+  "components": {
+    "button-primary": {
+      "shape": "pill, radius 999px",
+      "bg": "text (#131311)",
+      "color": "bg (#f7f7f4)",
+      "hover": "bg shifts to accent, text stays #131311, 200ms ease",
+      "padding": "14px 28px"
+    },
+    "nav": {
+      "style": "fixed top, transparent over hero, solid bg+hairline border after 80px scroll",
+      "wordmark": "logo, scramble-decode easter egg per motion spec",
+      "links": "micro-label scale, uppercase, tracked"
+    },
+    "section-marker": {
+      "style": "-> 01, -> 02, -> 03, -> 04 in Plex Mono, accent-colored arrow only",
+      "position": "top-left of each section, outside the 12-col container"
+    },
+    "cards-vision-feed": {
+      "border": "1px solid border, no shadow, no radius",
+      "hover": "border shifts to text color, no lift/scale transform"
+    },
+    "dividers": "1px hairline #e2e2dd, full-bleed, never decorative gradients"
+  },
+  "motion": {
+    "logo-scramble": "chars [A,T,G,C,H], random long-tail interval, <1s, width-locked, one-shot, no loop",
+    "hero-cipher": "genetic-scramble to resolve, on load only, one-shot",
+    "scroll-reveal": "fade + 8px translateY, once:true, 400ms ease-out, staggered 60ms per child",
+    "cta-magnetic": "vanilla JS cursor pull on contact CTA, disabled under prefers-reduced-motion",
+    "global-caps": "max 1 animation family active at once; all motion respects prefers-reduced-motion"
+  },
+  "imagery": {
+    "style": "matte clay/ceramic biological renders, simulated microscope optics",
+    "treatment": "barrel distortion + chromatic aberration, no stock photography, no 3D blobs",
+    "placement": "bleeds past container edge in hero, contained within grid elsewhere"
+  },
+  "exclusions": [
+    "No Inter, Roboto, Arial, system-ui fallback fonts",
+    "No pure #FFFFFF / #000000 - always off-white/off-black pair",
+    "No purple-blue gradients",
+    "No floating 3D blobs or abstract gradient shapes",
+    "No card-grid uniform service listicles",
+    "No testimonial carousels",
+    "No drop shadows anywhere - hairline borders only",
+    "No dark mode toggle",
+    "No rounded corners except pill CTA",
+    "No more than 1 hero-level animation trigger",
+    "No literal DNA helix or nucleotide graphics"
+  ]
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "id": "genome-browser",
+    "title": "Genome intuition, made legible",
+    "sector": "Pharma R&D · Genomics",
+    "year": "2023",
+    "problem": "A research team had genomic insight locked in notebooks and ad-hoc scripts — intuition that never reached the shared system.",
+    "intervention": "We co-architected a genome browser and annotation workflow with embedded scientists, preserving how researchers actually reason about variants.",
+    "outcome": "Scientists stopped exporting to desktop tools; decision-ready views shipped inside the platform.",
+    "tags": ["Semantic modelling", "Scientific UX"],
+    "featured": true
+  },
+  {
+    "id": "synthesis-automation",
+    "title": "Automation without losing the bench",
+    "sector": "Biotech · Lab automation",
+    "year": "2022",
+    "problem": "Robotic synthesis runs were technically correct but opaque — operators couldn't intervene when the science drifted.",
+    "intervention": "Human-in-the-loop controls and exception surfaces on top of existing automation, without stripping agency from the bench.",
+    "outcome": "Fewer silent failures; operators recovered runs that previously became scrap.",
+    "tags": ["Automation", "Agency"],
+    "featured": false
+  },
+  {
+    "id": "clinical-reporting",
+    "title": "The $38k wrong question",
+    "sector": "Clinical · Reporting",
+    "year": "2021",
+    "problem": "A report builder was months into build. Scientists still printed batch results and taped them to the bench.",
+    "intervention": "One week of user research reframed the ask before more code shipped — the real need was print-at-point-of-use.",
+    "outcome": "The wrong question cost $38,000. The right one was a print button.",
+    "tags": ["Product strategy", "UX"],
+    "featured": false
+  }
+]
