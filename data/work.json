@@ -2,34 +2,70 @@
   {
     "id": "genome-browser",
     "title": "Genome intuition, made legible",
+    "subtitle": "Pharma R&D · Genomics",
+    "summary": "A research team had genomic insight locked in notebooks and ad-hoc scripts — intuition that never reached the shared system. We co-architected a genome browser and annotation workflow with embedded scientists, preserving how researchers actually reason about variants.",
     "sector": "Pharma R&D · Genomics",
     "year": "2023",
     "problem": "A research team had genomic insight locked in notebooks and ad-hoc scripts — intuition that never reached the shared system.",
     "intervention": "We co-architected a genome browser and annotation workflow with embedded scientists, preserving how researchers actually reason about variants.",
     "outcome": "Scientists stopped exporting to desktop tools; decision-ready views shipped inside the platform.",
+    "challenge": "Turn tacit genomic reasoning into software that scientists would actually use — without forcing them into a workflow that erased how they think about variants.",
+    "whatWeDid": [
+      "Mapped how scientists actually navigate variants across notebooks, scripts, and tribal knowledge",
+      "Co-architected a genome browser and annotation workflow with embedded domain scientists",
+      "Preserved researcher agency in the interface instead of flattening intuition into rigid forms",
+      "Shipped decision-ready views inside the platform so insight no longer lived only on desktops"
+    ],
+    "services": ["Product strategy", "Scientific UX", "Semantic modelling"],
+    "industries": ["Pharma R&D", "Genomics", "Bioinformatics"],
     "tags": ["Semantic modelling", "Scientific UX"],
-    "featured": true
+    "featured": true,
+    "image": "assets/img/work/genome-browser.svg"
   },
   {
     "id": "synthesis-automation",
     "title": "Automation without losing the bench",
+    "subtitle": "Biotech · Lab automation",
+    "summary": "Robotic synthesis runs were technically correct but opaque — operators couldn't intervene when the science drifted. We designed human-in-the-loop controls and exception surfaces on top of existing automation, without stripping agency from the bench.",
     "sector": "Biotech · Lab automation",
     "year": "2022",
     "problem": "Robotic synthesis runs were technically correct but opaque — operators couldn't intervene when the science drifted.",
     "intervention": "Human-in-the-loop controls and exception surfaces on top of existing automation, without stripping agency from the bench.",
     "outcome": "Fewer silent failures; operators recovered runs that previously became scrap.",
+    "challenge": "Keep robotic synthesis reliable while giving operators a real way to intervene when science drifts — without ripping out the automation already in place.",
+    "whatWeDid": [
+      "Audited where silent failures hid inside otherwise “correct” robotic runs",
+      "Designed human-in-the-loop controls and exception surfaces on existing automation",
+      "Kept bench operators in the decision loop instead of automating agency away",
+      "Reduced scrap by making recoverable drifts visible early enough to act"
+    ],
+    "services": ["Product strategy", "Automation UX", "Systems design"],
+    "industries": ["Biotech", "Lab automation", "Chemical synthesis"],
     "tags": ["Automation", "Agency"],
-    "featured": false
+    "featured": false,
+    "image": "assets/img/work/synthesis-automation.svg"
   },
   {
     "id": "clinical-reporting",
     "title": "The $38k wrong question",
+    "subtitle": "Clinical · Reporting",
+    "summary": "A report builder was months into build. Scientists still printed batch results and taped them to the bench. One week of user research reframed the ask before more code shipped — the real need was print-at-point-of-use.",
     "sector": "Clinical · Reporting",
     "year": "2021",
     "problem": "A report builder was months into build. Scientists still printed batch results and taped them to the bench.",
     "intervention": "One week of user research reframed the ask before more code shipped — the real need was print-at-point-of-use.",
     "outcome": "The wrong question cost $38,000. The right one was a print button.",
+    "challenge": "Stop an expensive build from answering the wrong question — scientists needed results at the bench, not another report builder.",
+    "whatWeDid": [
+      "Ran one week of user research before more engineering spend",
+      "Found the real workflow: print batch results and tape them next to physical samples",
+      "Reframed the product ask from “better report UX” to print-at-point-of-use",
+      "Replaced months of wrong-direction work with a fix that matched how the lab actually operates"
+    ],
+    "services": ["Product strategy", "User research", "UX"],
+    "industries": ["Clinical", "Diagnostics", "Lab operations"],
     "tags": ["Product strategy", "UX"],
-    "featured": false
+    "featured": false,
+    "image": "assets/img/work/clinical-reporting.svg"
   }
 ]

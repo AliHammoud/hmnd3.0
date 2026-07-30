@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-label="">
+  <rect width="1600" height="1000" fill="#1a1a18"/>
+  <g fill="#f7f7f4" fill-opacity="0.12">
+    <rect x="120" y="220" width="420" height="28"/>
+    <rect x="120" y="280" width="680" height="16"/>
+    <rect x="120" y="320" width="620" height="16"/>
+    <rect x="120" y="360" width="540" height="16"/>
+    <rect x="120" y="440" width="360" height="28"/>
+    <rect x="120" y="500" width="720" height="16"/>
+    <rect x="120" y="540" width="580" height="16"/>
+  </g>
+  <text x="80" y="120" fill="#f7f7f4" fill-opacity="0.35" font-family="IBM Plex Mono, monospace" font-size="28" letter-spacing="4">CLINICAL · REPORTING</text>
+</svg>

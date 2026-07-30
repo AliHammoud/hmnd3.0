@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Automation without losing the bench — HMND</title>
+  <meta name="description" content="How HMND designed human-in-the-loop controls for robotic synthesis without stripping agency from the bench." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="page-case">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" id="site-header">
+    <div class="site-header__inner">
+      <a href="../index.html" class="logo" id="logo" aria-label="HMND home">
+        <img src="../assets/img/HMND_logo.svg" alt="" class="logo__img" width="187" height="46" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a href="../index.html#who">Who we are</a>
+        <a href="../index.html#approach">Approach</a>
+        <a href="index.html" class="is-active" aria-current="page">Work</a>
+        <a href="../index.html#vision" class="nav__vision">
+          Vision
+          <span class="nav__dot" id="vision-dot" hidden aria-hidden="true"></span>
+        </a>
+        <a href="../index.html#contact" class="nav__contact" id="nav-contact">Contact</a>
+      </nav>
+      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+    <nav class="mobile-nav" id="mobile-nav" hidden>
+      <a href="../index.html#who">Who we are</a>
+      <a href="../index.html#approach">Approach</a>
+      <a href="index.html" aria-current="page">Work</a>
+      <a href="../index.html#vision">Vision</a>
+      <a href="../index.html#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main" class="case-page">
+    <div class="container">
+      <a class="case-back reveal" href="index.html">← Work</a>
+
+      <header class="case-header reveal">
+        <p class="case-header__meta">
+          <span>Biotech · Lab automation</span>
+          <span>2022</span>
+        </p>
+        <h1 class="case-header__title">Automation without losing the bench</h1>
+        <p class="case-header__subtitle">Human-in-the-loop controls so operators can intervene when the science drifts.</p>
+      </header>
+
+      <div class="case-layout">
+        <div class="case-intro reveal">
+          <p class="case-summary">
+            Robotic synthesis runs were technically correct but opaque — operators couldn’t intervene when the science drifted. We designed human-in-the-loop controls and exception surfaces on top of existing automation, without stripping agency from the bench.
+          </p>
+          <div class="case-actions">
+            <a class="btn-primary magnetic" href="../index.html?topic=Biotech%20%C2%B7%20Lab%20automation%3A%20Automation%20without%20losing%20the%20bench#contact">Discuss a similar problem →</a>
+          </div>
+        </div>
+
+        <dl class="case-spec reveal">
+          <div class="case-spec__row">
+            <dt class="case-spec__label">Services</dt>
+            <dd class="case-spec__value case-spec__chips">
+              <span>Product strategy</span>
+              <span>Automation UX</span>
+              <span>Systems design</span>
+            </dd>
+          </div>
+          <div class="case-spec__row">
+            <dt class="case-spec__label">Industries</dt>
+            <dd class="case-spec__value case-spec__chips">
+              <span>Biotech</span>
+              <span>Lab automation</span>
+              <span>Chemical synthesis</span>
+            </dd>
+          </div>
+          <div class="case-spec__row">
+            <dt class="case-spec__label">Challenge</dt>
+            <dd class="case-spec__value">
+              Keep robotic synthesis reliable while giving operators a real way to intervene when science drifts — without ripping out the automation already in place.
+            </dd>
+          </div>
+          <div class="case-spec__row">
+            <dt class="case-spec__label">What we did</dt>
+            <dd class="case-spec__value">
+              <ul class="case-spec__list">
+                <li>Audited where silent failures hid inside otherwise “correct” robotic runs</li>
+                <li>Designed human-in-the-loop controls and exception surfaces on existing automation</li>
+                <li>Kept bench operators in the decision loop instead of automating agency away</li>
+                <li>Reduced scrap by making recoverable drifts visible early enough to act</li>
+              </ul>
+            </dd>
+          </div>
+        </dl>
+      </div>
+
+      <figure class="case-media reveal">
+        <img src="../assets/img/work/synthesis-automation.svg" alt="" width="1600" height="1000" />
+      </figure>
+
+      <div class="case-next reveal">
+        <p class="case-next__label">Next case</p>
+        <a class="case-next__link" href="clinical-reporting.html">The $38k wrong question →</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__top">
+      <span>Since 2019</span>
+      <a href="https://vision.hmnd.design" rel="noopener noreferrer" target="_blank">Vision →</a>
+      <time id="local-time" datetime="">--:--</time>
+      <span>© 2026</span>
+    </div>
+    <div class="site-footer__wordmark" aria-hidden="true">HMND</div>
+  </footer>
+
+  <script src="../main.js" defer></script>
+</body>
+</html>

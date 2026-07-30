@@ -429,29 +429,22 @@
 
       const renderCase = (item, featuredFlag) => {
         const a = document.createElement("a");
-        a.href = `#contact`;
+        a.href = `works/${item.id}.html`;
         a.className = `work-case reveal${featuredFlag ? " work-case--featured" : ""}`;
-        const topic = `${item.sector}: ${item.title || item.problem}`;
-        a.setAttribute("data-topic", topic);
         a.innerHTML = `
           <div>
             <div class="work-case__meta"><span>${escapeHtml(item.sector)}</span><span>${escapeHtml(item.year)}</span></div>
             <h3>${escapeHtml(item.title || item.problem)}</h3>
-            <p>${escapeHtml(item.problem)}</p>
-            ${featuredFlag ? `<p>${escapeHtml(item.intervention)}</p>` : ""}
+            <p>${escapeHtml(item.summary || item.problem)}</p>
             <p class="work-case__outcome">${escapeHtml(item.outcome)}</p>
           </div>
           <ul class="work-case__tags">${(item.tags || []).map((t) => `<li>${escapeHtml(t)}</li>`).join("")}</ul>
         `;
-        a.addEventListener("click", () => {
-          const stuck = document.getElementById("stuck");
-          if (stuck) stuck.value = topic;
-        });
         return a;
       };
 
       if (featured) rail.appendChild(renderCase(featured, true));
-      rest.forEach((item) => rail.appendChild(renderCase(item, false)));
+      rest.slice(0, 2).forEach((item) => rail.appendChild(renderCase(item, false)));
 
       // observe new reveals
       if (!reduceMotion) {
