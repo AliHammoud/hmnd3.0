@@ -88,6 +88,23 @@
 
   $$("[data-count]").forEach((el) => countObserver.observe(el));
 
+  // —— Lights on (sections with [data-lights] go dark → lit once, on entry) ——
+  const lightsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-lit");
+        lightsObserver.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.28 }
+  );
+
+  $$("[data-lights]").forEach((el) => {
+    if (reduceMotion()) el.classList.add("is-lit");
+    else lightsObserver.observe(el);
+  });
+
   // —— Mobile nav ——
   const toggle = $("#nav-toggle");
   const mobileNav = $("#mobile-nav");

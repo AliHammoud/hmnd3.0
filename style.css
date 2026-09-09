@@ -936,6 +936,116 @@ body.nav-open {
   }
 }
 
+/* —— How this starts (lights on) —— */
+/* Default state is lit (paper) so no-JS renders normally.
+   With JS the room's background starts dark; once 28% of the section has
+   scrolled into view, main.js adds .is-lit and it simply transitions to
+   paper. The text is ALWAYS ink-black — it is never itself recoloured. It
+   goes from illegible (black on near-black) to legible (black on paper)
+   purely because the background changed underneath it. */
+.start {
+  --color-bg: var(--color-paper);
+  --color-surface: var(--color-paper-2);
+  --color-surface-2: var(--color-paper-2);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-ink-muted);
+  --color-text-dim: #8a8a85;
+  --color-border: var(--color-border-paper);
+  --color-border-strong: #a9a9a3;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  transition: background-color var(--duration-slow) var(--ease-out);
+}
+
+.js .start:not(.is-lit) {
+  --color-bg: #0a0a09;
+  --color-surface: #111110;
+  --color-surface-2: #171716;
+  --color-border: #1a1a18;
+  --color-border-strong: #24241f;
+}
+
+/* Borders fade in with the background (never the text color). Scoped to just
+   the bordered rows — a broader :is() list here would out-specificity the
+   .reveal transition below and silently kill the fade/rise on everything
+   else in the section (the pronounce line, the CTA, etc). */
+.start :is(.spec, .spec__row) {
+  transition: border-color var(--duration-slow) var(--ease-out);
+}
+
+.start .reveal {
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out),
+    border-color var(--duration-slow) var(--ease-out);
+}
+
+.start__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+}
+
+.start__head .display {
+  margin-top: 0;
+}
+
+.start__lamp {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-left: var(--space-2);
+  border: 1px solid currentColor;
+  transition:
+    background-color var(--duration-fast) ease,
+    border-color var(--duration-fast) ease,
+    box-shadow var(--duration-slow) var(--ease-out);
+}
+
+.js .start.is-lit .start__lamp {
+  background-color: var(--color-accent);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 18px 2px color-mix(in srgb, var(--color-accent) 55%, transparent);
+}
+
+.start__note {
+  margin-top: var(--space-4);
+  max-width: var(--measure);
+  color: var(--color-text-muted);
+}
+
+.start .spec {
+  margin-top: var(--space-8);
+}
+
+.pronounce {
+  margin-top: var(--space-10);
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.start__cta {
+  margin-top: var(--space-8);
+}
+
+@media (min-width: 900px) {
+  .start__grid {
+    grid-template-columns: 4fr 8fr;
+    gap: var(--space-15);
+    align-items: start;
+  }
+
+  .start__head {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-6));
+  }
+}
+
 /* —— Thesis (paper) —— */
 .thesis .display {
   margin-bottom: var(--space-10);
@@ -1714,6 +1824,12 @@ body.nav-open {
   .vision__skel,
   .blink {
     animation: none;
+  }
+
+  .start,
+  .start :is(p, h2, dt, dd, span, div, dl, a:not(.btn)),
+  .start__lamp {
+    transition: none;
   }
 
   .btn::after,
