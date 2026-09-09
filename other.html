@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HMND. Data modelling and systems architecture.</title>
+<meta name="description" content="Most companies have half a dozen systems that each answer differently to the same question. We work out what your business actually contains, then build on top of it. Mostly pharma.">
+<meta name="theme-color" content="#080b0c">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body id="top">
+
+<!--
+  DEFERRED: the wordmark animation.
+  H, M, N and D are each valid IUPAC nucleotide ambiguity codes
+  (H = A, C or T. M = A or C. N = any base. D = A, G or T), so HMND is
+  already a degenerate DNA sequence with 72 specified expansions.
+  The letter resolving device is parked, not abandoned. Source is in git history.
+
+  The logo below is inlined from assets/HMND_logo.svg with fill set to
+  currentColor, so it follows the text colour rather than needing its own.
+-->
+
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="#top" aria-label="HMND, home">
+      <svg viewBox="0 0 100 25" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+        <path d="M82.3253 21.086H87.011C91.111 21.086 95.7967 17.5599 95.7967 10.402C95.7967 6.27645 93.2127 3.84344 89.0438 3.84344H85.9085L82.3253 21.086ZM86.9421 25H77.4329L82.5665 0H89.5606C96.0034 0 100 4.09027 100 10.2257C100 19.8872 93.5227 25 86.9421 25Z"/>
+        <path d="M73.2592 25H69.0559L61.545 6.17066L57.6518 25H53.5173L58.6854 0H63.5089L70.5718 17.9478L74.2928 0H78.4617L73.2592 25Z"/>
+        <path d="M49.3649 25H45.2994L49.0548 6.80536L37.9952 25H34.7911L30.7255 6.9464L26.9701 25H22.9735L28.1415 0H33.1373L37.4095 18.8999L48.8136 0H54.5674L49.3649 25Z"/>
+        <path d="M18.8461 25H14.6772L16.8822 14.3159H6.33945L4.13442 25H0L5.16803 0H9.30245L7.16633 10.3315H17.7091L19.8452 0H24.0141L18.8461 25Z"/>
+      </svg>
+    </a>
+    <a class="header-cta" href="#close">Get in touch</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ==========================================================
+       1. HERO
+       ========================================================== -->
+  <section class="hero" id="hero">
+    <div class="wrap hero-grid">
+      <p class="eyebrow reveal">Data modelling and systems architecture. Mostly pharma.</p>
+      <h1 class="display hero-title reveal">Before any of it works, your systems have to agree on what things are.</h1>
+      <div class="hero-foot reveal">
+        <p class="hero-sub">A patient. A site. A batch. A customer. Most companies have half a dozen systems that each answer differently, and everything downstream inherits the disagreement: the reports, the dashboards, the models. We sort that out first, then build on top of it.</p>
+        <a class="scroll-cue" href="#stall">
+          <span class="scroll-word">Scroll</span>
+          <span class="scroll-tick" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       2. WHY THESE PROJECTS STALL
+       ========================================================== -->
+  <section class="section split" id="stall">
+    <div class="wrap split-grid">
+      <div class="col-label">
+        <p class="eyebrow reveal">Why these projects stall.</p>
+      </div>
+      <div class="col-body">
+        <h2 class="display section-title reveal">It usually breaks before the AI is involved.</h2>
+
+        <ol class="beats">
+          <li class="beat reveal">
+            <span class="beat-num">01</span>
+            <p class="beat-body">You have a data platform. What you don&rsquo;t have is anything that records what the data means. A table called PATIENT tells you there are rows in it. It doesn&rsquo;t tell you whether someone who withdrew and later enrolled again is one patient or two, and there are probably three teams in your company who would each answer that differently.</p>
+          </li>
+          <li class="beat reveal">
+            <span class="beat-num">02</span>
+            <p class="beat-body">The pilot worked because somebody hand picked the data for it. Production is a different place. Production has the twenty year old records, the acquisition that was never fully migrated, and the free text field that half a department has been using as a status flag for a decade.</p>
+          </li>
+          <li class="beat reveal">
+            <span class="beat-num">03</span>
+            <p class="beat-body">Ask two systems how many active studies there are and you will get two numbers. Neither is wrong, exactly. They are answering slightly different questions, and nobody ever wrote down which question was the right one. A model trained on top of that does not resolve the disagreement. It averages it, and then it sounds completely confident.</p>
+          </li>
+        </ol>
+
+        <p class="pronounce display reveal">None of this is an AI problem. It is a definitions problem, and it sits underneath everything you are currently trying to fix.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       3. HOW WE WORK
+       ========================================================== -->
+  <section class="section split" id="work">
+    <div class="wrap split-grid">
+      <div class="col-label">
+        <p class="eyebrow reveal">How we work.</p>
+      </div>
+      <div class="col-body">
+        <ol class="beats">
+          <li class="beat reveal">
+            <span class="beat-num">01</span>
+            <div class="beat-body">
+              <h3 class="beat-head">Write down what is actually there.</h3>
+              <p>We start by mapping what your business really contains: the entities, the rules, and every exception your systems already encode badly and inconsistently, including the ones that three separate teams each believe they own. This takes longer than anyone wants it to. It is also the only part that cannot be skipped, because everything after it is guesswork otherwise.</p>
+            </div>
+          </li>
+          <li class="beat reveal">
+            <span class="beat-num">02</span>
+            <div class="beat-body">
+              <h3 class="beat-head">Design against real constraints.</h3>
+              <p>Then we design, and every decision has to survive three questions. What breaks if this is wrong. What it earns if it is right. Who actually has to use it. Anything that cannot answer all three comes back out.</p>
+            </div>
+          </li>
+          <li class="beat reveal">
+            <span class="beat-num">03</span>
+            <div class="beat-body">
+              <h3 class="beat-head">Prove the risky part first.</h3>
+              <p>We build whatever is most likely to fail before we build anything else, on your real data, at small scale. Better to find out in week three than in month nine. Nobody has ever been talked out of a bad architecture by a slide.</p>
+            </div>
+          </li>
+        </ol>
+
+        <div class="negations reveal">
+          <p class="micro-label">What we are not</p>
+          <p class="lede">We do not sell a platform, so there is nothing to renew and nothing to be locked into. You keep the model, the code, and the people who understand both. We do not do staff augmentation, because we are not bodies to put against a backlog. And we do not stop at a recommendation, since a recommendation nobody can build from is just an opinion with a budget attached.</p>
+        </div>
+
+        <p class="pronounce display reveal">If a design cannot survive an hour of questions from the engineer who has to build it, it is not a design yet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       4. TRACK RECORD
+
+       PLACEHOLDER SECTION. Two groups, deliberately separate.
+
+       "Built with HMND"   = engagements the studio was itself engaged for.
+       "Built before HMND" = work delivered prior to the studio.
+
+       All four wordmarks currently sit in the SECOND group on purpose,
+       because that is the claim that is safe to ship by accident.
+       Move each one up into the first group only where it is literally true.
+       ========================================================== -->
+  <section class="section split" id="record">
+    <div class="wrap split-grid">
+      <div class="col-label">
+        <p class="eyebrow reveal">Track record.</p>
+      </div>
+      <div class="col-body">
+
+        <div class="record-group reveal">
+          <p class="micro-label">Built with HMND.</p>
+          <ul class="logo-row">
+            <!-- LOGO: firm client. Move a wordmark here once it belongs here.
+            <li class="logo-item">
+              <span class="logo-mark">Takeda</span>
+              <span class="logo-context">CONTEXT: what the work actually was, in one plain sentence.</span>
+            </li>
+            -->
+            <li class="logo-item logo-empty">
+              <span class="logo-context">Awaiting assignment. See the comment in this section.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="record-group reveal">
+          <p class="micro-label">Built before HMND.</p>
+          <ul class="logo-row">
+            <!-- LOGO: prior work. Replace each context line with what the work
+                 actually was, in one plain sentence. Do not fabricate. -->
+            <li class="logo-item">
+              <span class="logo-mark">Google</span>
+              <!-- CONTEXT: replace. -->
+              <span class="logo-context">Context to be supplied.</span>
+            </li>
+            <li class="logo-item">
+              <span class="logo-mark">Nike</span>
+              <!-- CONTEXT: replace. -->
+              <span class="logo-context">Context to be supplied.</span>
+            </li>
+            <li class="logo-item">
+              <span class="logo-mark">Azul</span>
+              <!-- CONTEXT: replace. -->
+              <span class="logo-context">Context to be supplied.</span>
+            </li>
+            <li class="logo-item">
+              <span class="logo-mark">Takeda</span>
+              <!-- CONTEXT: replace. -->
+              <span class="logo-context">Context to be supplied.</span>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       5. SELECTED WORK
+
+       PLACEHOLDER SECTION.
+       Every value below is a placeholder. Real names and real numbers only.
+       The "Why it was hard" line is the one that cannot be faked, so it is
+       worth more than the outcome line. Write it first.
+       ========================================================== -->
+  <section class="section" id="cases">
+    <div class="wrap">
+      <p class="eyebrow reveal">Selected work.</p>
+
+      <div class="case-grid">
+
+        <!-- CASE STUDY: replace with real client detail, do not fabricate -->
+        <article class="case reveal">
+          <h3 class="case-title">Built with <span class="case-client">CLIENT</span></h3>
+          <dl class="case-rows">
+            <dt>Problem</dt>
+            <dd>What they came to us with.</dd>
+            <dt>Why it was hard</dt>
+            <dd>The specific thing that made this different from the easy version.</dd>
+            <dt>What we built</dt>
+            <dd>In plain terms.</dd>
+            <dt>What changed</dt>
+            <dd>With a real number in it.</dd>
+          </dl>
+        </article>
+
+        <!-- CASE STUDY: replace with real client detail, do not fabricate -->
+        <article class="case reveal">
+          <h3 class="case-title">Built with <span class="case-client">CLIENT</span></h3>
+          <dl class="case-rows">
+            <dt>Problem</dt>
+            <dd>What they came to us with.</dd>
+            <dt>Why it was hard</dt>
+            <dd>The specific thing that made this different from the easy version.</dd>
+            <dt>What we built</dt>
+            <dd>In plain terms.</dd>
+            <dt>What changed</dt>
+            <dd>With a real number in it.</dd>
+          </dl>
+        </article>
+
+        <!-- CASE STUDY: replace with real client detail, do not fabricate -->
+        <article class="case reveal">
+          <h3 class="case-title">Built with <span class="case-client">CLIENT</span></h3>
+          <dl class="case-rows">
+            <dt>Problem</dt>
+            <dd>What they came to us with.</dd>
+            <dt>Why it was hard</dt>
+            <dd>The specific thing that made this different from the easy version.</dd>
+            <dt>What we built</dt>
+            <dd>In plain terms.</dd>
+            <dt>What changed</dt>
+            <dd>With a real number in it.</dd>
+          </dl>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       6. HOW THIS STARTS
+       ========================================================== -->
+  <section class="section split" id="start">
+    <div class="wrap split-grid">
+      <div class="col-label">
+        <p class="eyebrow reveal">How this starts.</p>
+      </div>
+      <div class="col-body">
+        <p class="lede reveal">Every engagement starts the same way. A mapping engagement, with the scope and the price agreed before we begin. We spend that time working out what your business actually contains and where your systems currently disagree about it, and you get back a written architecture: what to build, in what order, what it costs you if it is wrong, and what it earns if it is right. It is yours either way. If you never work with us again, you still have it.</p>
+
+        <dl class="spec reveal">
+          <div class="spec-row">
+            <dt>Duration</dt>
+            <!-- DURATION: replace. -->
+            <dd>To be supplied.</dd>
+          </div>
+          <div class="spec-row">
+            <dt>Price</dt>
+            <!-- PRICE: replace. -->
+            <dd>To be supplied.</dd>
+          </div>
+          <div class="spec-row">
+            <dt>What you get back</dt>
+            <!-- DELIVERABLES: replace with the real list. -->
+            <dd>To be supplied.</dd>
+          </div>
+        </dl>
+
+        <p class="pronounce display reveal">Sometimes the honest answer is that you should not build the thing at all. We will tell you that, and it will be the cheapest advice you get all year.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       7. NO HANDOFF
+       ========================================================== -->
+  <section class="section split" id="handoff">
+    <div class="wrap split-grid">
+      <div class="col-label">
+        <p class="eyebrow reveal">No handoff.</p>
+      </div>
+      <div class="col-body">
+        <p class="lede reveal">Whoever maps your domain is the same person who builds on it. There is no account manager in between, and nothing gets passed to someone more junior once the contract is signed.</p>
+        <p class="lede reveal">We take a small number of engagements at a time. That is a real constraint on how quickly we can start, and it is also the reason the work holds up.</p>
+
+        <!-- PRINCIPAL: optional and recommended. Name, plus one plain sentence
+             about what you built and where. The track record above is prior work
+             under a real name, so naming the person who did it turns borrowed
+             wordmarks into direct evidence.
+        <p class="principal reveal">NAME. One plain sentence of provenance.</p>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================
+       8. CLOSE. The only two places on the page that use pure white.
+          Keep it that way, or it stops meaning anything.
+       ========================================================== -->
+  <section class="section close" id="close">
+    <div class="wrap close-inner">
+      <p class="display close-line reveal">Tell us where you are stuck. We will tell you what we would look at first.</p>
+      <!-- CONTACT: replace connect@hmnd.example with the real address. -->
+      <a class="close-cta reveal" href="mailto:connect@hmnd.example">connect@hmnd.example</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>HMND</span>
+    <span>Data modelling and systems architecture.</span>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

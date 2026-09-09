@@ -1,189 +1,316 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>HMND — Life-science product strategy studio</title>
-  <meta name="description" content="HMND helps life science and pharma teams ask for the right software — and ship it. Product strategy at the frontier of science and AI." />
+  <script>document.documentElement.className = "js";</script>
+  <title>HMND — The translation layer between science and software</title>
+  <meta name="description" content="HMND works with pharma and biotech teams to find the right question before engineering builds the wrong answer. Product strategy at the frontier of science and software. Est. 2019." />
+  <meta name="theme-color" content="#0a0a09" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="HMND — The translation layer between science and software" />
+  <meta property="og:description" content="Pharma and biotech teams hire HMND to find the right question before engineering builds the wrong answer." />
+  <meta property="og:url" content="https://hmnd.design/" />
+  <!-- TODO: supply assets/img/og.png (1200x630) and uncomment -->
+  <!-- <meta property="og:image" content="https://hmnd.design/assets/img/og.png" /> -->
+  <link rel="canonical" href="https://hmnd.design/" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a09'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%23f2f2ee' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%238dff6a'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="style.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "HMND",
+    "url": "https://hmnd.design/",
+    "email": "hello@hmnd.design",
+    "foundingDate": "2019",
+    "description": "Product strategy and scientific UX for pharma and biotech teams.",
+    "knowsAbout": ["Life sciences software", "Product strategy", "Scientific UX", "Semantic modelling", "Pharmacovigilance"]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="site-header">
-    <div class="site-header__inner">
-      <a
-        href="#top"
-        class="logo"
-        id="logo"
-        aria-label="we recombine — the mark stays"
-      >
-        <img
-          src="assets/img/HMND_logo.svg"
-          alt=""
-          class="logo__img"
-          width="187"
-          height="46"
-        />
-      </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="#who">Who we are</a>
-        <a href="#approach">Approach</a>
-        <a href="works/index.html">Work</a>
-        <a href="#vision" class="nav__vision">
-          Vision
-          <span class="nav__dot" id="vision-dot" hidden aria-hidden="true"></span>
+    <div class="site-header__bar">
+      <div class="container site-header__inner">
+        <a href="#top" class="logo" aria-label="HMND — home">
+          <svg class="logo__mark" viewBox="0 0 187 46" width="187" height="46" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M35.8543 46H28.1103L32.2063 26.608H12.6223L8.52625 46H0.846253L10.4463 0.623997H18.1263L14.1583 19.376H33.7423L37.7103 0.623997H45.4543L35.8543 46ZM92.5453 46H84.9933L91.9693 12.976L71.4253 46H65.4733L57.9213 13.232L50.9453 46H43.5213L53.1213 0.623997H62.4013L70.3373 34.928L91.5213 0.623997H102.209L92.5453 46ZM136.931 46H129.123L115.171 11.824L107.939 46H100.259L109.859 0.623997H118.819L131.939 33.2L138.851 0.623997H146.595L136.931 46ZM153.772 38.896H162.476C170.092 38.896 178.796 32.496 178.796 19.504C178.796 12.016 173.996 7.6 166.252 7.6H160.428L153.772 38.896ZM162.348 46H144.684L154.22 0.623997H167.212C179.18 0.623997 186.604 8.048 186.604 19.184C186.604 36.72 174.572 46 162.348 46Z"/>
+          </svg>
         </a>
-        <a href="#contact" class="nav__contact" id="nav-contact">Contact</a>
-      </nav>
-      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
+        <nav class="nav" aria-label="Primary">
+          <a href="#thesis">Thesis</a>
+          <a href="#method">Method</a>
+          <a href="works/index.html">Work</a>
+          <a href="#vision" class="nav__vision">Vision<span class="nav__dot" id="vision-dot" hidden aria-hidden="true"></span></a>
+          <a href="#contact">Contact</a>
+        </nav>
+        <div class="site-header__readout mono" aria-hidden="true">
+          <span id="local-time-header">--:--</span>
+        </div>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+          <span></span><span></span>
+        </button>
+      </div>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" hidden>
-      <a href="#who">Who we are</a>
-      <a href="#approach">Approach</a>
-      <a href="works/index.html">Work</a>
-      <a href="#vision">Vision</a>
-      <a href="#contact">Contact</a>
+    <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Primary mobile">
+      <div class="container mobile-nav__inner">
+        <a href="#thesis"><span class="mono">01</span>Thesis</a>
+        <a href="#method"><span class="mono">02</span>Method</a>
+        <a href="works/index.html"><span class="mono">03</span>Work</a>
+        <a href="#vision"><span class="mono">04</span>Vision</a>
+        <a href="#contact"><span class="mono">05</span>Contact</a>
+        <p class="mobile-nav__foot mono">hello@hmnd.design · GMT+3</p>
+      </div>
     </nav>
   </header>
 
   <main id="main">
-    <!-- 02 Hero -->
+
+    <!-- 00 · Hero -->
     <section class="hero" id="top" aria-labelledby="hero-heading">
-      <div class="hero__media" aria-hidden="true">
-        <img
-          src="assets/img/hero.png"
-          alt=""
-          class="hero__img"
-          width="1200"
-          height="1400"
-        />
+      <div class="hero__media media media--placeholder media--video"
+           data-ad="VIDEO · 12–20s seamless loop · 2.39:1 · Slow lateral dolly across an automated liquid-handling deck or sequencing lab at night. Instrument LEDs the only light source. Desaturated, deep blacks, fine grain, no people, no logos. Motion under 5% of frame per second."
+           aria-hidden="true">
+        <!-- Drop in when supplied:
+        <video autoplay muted loop playsinline poster="assets/video/hero-poster.jpg">
+          <source src="assets/video/hero.mp4" type="video/mp4" />
+        </video>
+        -->
+        <div class="hero__scrim"></div>
+        <div class="grid-lines" aria-hidden="true"></div>
       </div>
-      <div class="hero__copy reveal">
-        <h1 id="hero-heading" class="hero__title">
-          <span class="hero__line">We earn the <em class="hero__accent">frontier</em></span>
-          <span class="hero__line">one customer at a time.</span>
-        </h1>
-        <p class="hero__sub">
-          Your engineers build what you ask for. We help you ask for the right thing.
-          We work with life science and pharma teams whose technology outpaces their ability to ship it.
+
+      <div class="container hero__inner">
+        <p class="hero__eyebrow mono reveal">
+          <span class="readout__key">HMND</span>
+          <span class="readout__sep">/</span>
+          <span>Life science × software</span>
+          <span class="readout__sep">/</span>
+          <span>Est. 2019</span>
         </p>
-        <div class="hero__actions">
-          <a class="btn-primary magnetic" href="#contact">Schedule a call →</a>
-          <a class="text-link" href="#contact-form">Or send a brief</a>
-        </div>
-      </div>
-    </section>
 
-    <!-- 03 Proof -->
-    <section class="proof cinematic" id="proof" aria-labelledby="proof-heading">
-      <div class="cinematic__pin">
-        <div class="container proof__inner">
-          <p class="section-marker section-marker--on-dark cinematic__line"><span class="section-marker__arrow" aria-hidden="true">→</span> 01 · The cost of the wrong question</p>
-          <div class="proof__grid">
-            <div class="proof__copy">
-              <h2 id="proof-heading" class="proof__stat cinematic__line">$38,000.</h2>
-              <p class="cinematic__line">Three engineers. One PM. One BA. Two months.</p>
-              <p class="cinematic__line">A research team was building a test result analysis suite. We were brought in to improve the UX of their report builder.</p>
-              <p class="cinematic__line">One week of user research. One finding: the scientists needed to print batch results and scotch-tape them to the lab bench next to the physical sample.</p>
-              <p class="cinematic__line">The fix was a print button.</p>
-              <p class="proof__close cinematic__line">Two months and $38,000 to ask the wrong question.</p>
-            </div>
-            <div class="proof__ghost cinematic__line" aria-hidden="true" data-count-end="38000" data-reveal-start="0" data-reveal-end="0.33">$0</div>
+        <h1 id="hero-heading" class="hero__title reveal">
+          <span class="line"><span class="line__inner">Science moves faster</span></span>
+          <span class="line"><span class="line__inner">than the software</span></span>
+          <span class="line"><span class="line__inner">built to serve it.</span></span>
+        </h1>
+
+        <div class="hero__foot">
+          <p class="hero__sub reveal">
+            HMND is the translation layer between research and engineering. We work with pharma and biotech teams to find the right question — before the engineers build the wrong answer.
+          </p>
+          <div class="hero__actions reveal">
+            <a class="btn btn--primary" href="#contact">Send a brief</a>
+            <a class="btn btn--ghost" href="#proof">Read the field record</a>
           </div>
         </div>
       </div>
+
+      <div class="hero__corners mono" aria-hidden="true">
+        <span class="hero__corner hero__corner--bl">Fig. 00 — Translation layer</span>
+        <span class="hero__corner hero__corner--br"><span class="blink"></span>Scroll</span>
+      </div>
     </section>
 
-    <!-- 04 Who We Are -->
-    <section class="who section" id="who" aria-labelledby="who-heading">
+    <!-- Principles strip -->
+    <div class="strip" aria-label="Operating principles">
+      <div class="container strip__inner mono">
+        <span><b>01</b>Preserve human agency</span>
+        <span><b>02</b>Embed domain scientists</span>
+        <span><b>03</b>Fix the question first</span>
+        <span><b>04</b>Stay as the translation layer</span>
+      </div>
+    </div>
+
+    <!-- 01 · Proof -->
+    <section class="section proof" id="proof" aria-labelledby="proof-heading">
+      <div class="grid-lines grid-lines--faint" aria-hidden="true"></div>
       <div class="container">
-        <p class="section-marker reveal"><span class="section-marker__arrow" aria-hidden="true">→</span> 02 · Who we are</p>
-        <div class="who__grid">
-          <div class="who__prose reveal">
-            <h2 id="who-heading" class="sr-only">Who we are</h2>
-            <p class="lead">
-              Software that makes a scientist’s intuition legible to a system. The knowledge that lives in a researcher’s head is the most valuable and most fragile asset in your organization. We build tools that capture it, structure it, and make it actionable — without destroying what made it valuable in the first place.
+        <p class="marker reveal"><span class="marker__num">01</span><span class="marker__rule"></span>The cost of the wrong question</p>
+
+        <div class="proof__grid">
+          <div class="proof__stat-col">
+            <h2 id="proof-heading" class="stat reveal">
+              <span class="stat__value mono" data-count="38000" data-prefix="$">$0</span>
+              <span class="stat__caption">Spent building the wrong thing before anyone asked the scientists.</span>
+            </h2>
+            <figure class="media media--placeholder proof__media reveal" data-fig="Fig. 01"
+                    data-ad="STILL · 4:5 · Overhead shot of a printed batch-results sheet taped to a steel lab bench beside a sample rack. Overhead fluorescent, slight grain, desaturated. No hands, no faces. The tape is the subject.">
+              <figcaption class="media__caption mono">Fig. 01 — The actual deliverable</figcaption>
+            </figure>
+          </div>
+
+          <ol class="steps reveal-group">
+            <li class="steps__item reveal">
+              <span class="steps__num mono">01</span>
+              <p>Three engineers. One product manager. One business analyst. Two months.</p>
+            </li>
+            <li class="steps__item reveal">
+              <span class="steps__num mono">02</span>
+              <p>A research team was building a test-result analysis suite. We were brought in to improve the UX of their report builder.</p>
+            </li>
+            <li class="steps__item reveal">
+              <span class="steps__num mono">03</span>
+              <p>One week of user research. One finding: the scientists needed to print batch results and tape them to the bench, next to the physical sample.</p>
+            </li>
+            <li class="steps__item reveal">
+              <span class="steps__num mono">04</span>
+              <p>The fix was a print button.</p>
+            </li>
+            <li class="steps__item steps__item--close reveal">
+              <span class="steps__num mono">—</span>
+              <p>Two months and $38,000 to ask the wrong question. One week to ask the right one.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · Thesis (paper) -->
+    <section class="section thesis paper" id="thesis" aria-labelledby="thesis-heading">
+      <div class="container">
+        <p class="marker reveal"><span class="marker__num">02</span><span class="marker__rule"></span>Thesis</p>
+
+        <h2 id="thesis-heading" class="display reveal">
+          <span class="line"><span class="line__inner">Intuition,</span></span>
+          <span class="line"><span class="line__inner">made legible.</span></span>
+        </h2>
+
+        <div class="thesis__grid">
+          <div class="thesis__prose">
+            <p class="lead reveal">
+              The knowledge in a researcher’s head is the most valuable and most fragile asset your organization owns. We build software that captures it, structures it, and makes it actionable — without destroying what made it valuable in the first place.
             </p>
-            <p>
-              Since 2019, HMND has operated at the intersection of advanced science and software — through crises, through platform shifts, always at the edge of what’s shippable.
+            <p class="reveal">
+              Since 2019 HMND has operated at the intersection of advanced science and software: through a pandemic, through platform shifts, through the arrival of generative models. Always at the edge of what is shippable, never past it.
             </p>
           </div>
-          <aside class="who__aside reveal">
-            <p class="who__year">Since <span class="who__year-value" data-year-end="2019"></span></p>
-            <p class="who__claim">Advanced science × software. Solo studio. Direct engagement.</p>
+
+          <aside class="principal reveal" aria-label="Principal">
+            <figure class="media media--placeholder principal__portrait" data-fig="Fig. 02"
+                    data-ad="PORTRAIT · 4:5 · Black and white. Principal seated at a bench or desk, direct gaze, no smile. Single hard light from the left, deep shadow on the right. Background: out-of-focus glassware or monitors. Shot at eye level.">
+              <figcaption class="media__caption mono">Fig. 02 — Principal</figcaption>
+            </figure>
+            <dl class="ledger">
+              <div><dt class="mono">Principal</dt><dd>Ali Hammoud</dd></div>
+              <div><dt class="mono">Structure</dt><dd>One principal. A bench of embedded pharmacologists and scientists, engaged per project.</dd></div>
+              <div><dt class="mono">Engagement</dt><dd>Direct. No account layer.</dd></div>
+              <div><dt class="mono">Since</dt><dd>2019</dd></div>
+            </dl>
           </aside>
         </div>
       </div>
     </section>
 
-    <!-- 05 Approach -->
-    <section class="approach section" id="approach" aria-labelledby="approach-heading">
-      <div class="container">
-        <p class="section-marker reveal"><span class="section-marker__arrow" aria-hidden="true">→</span> 03 · Approach</p>
-        <h2 id="approach-heading" class="section-title reveal">How we work</h2>
-        <ol class="approach__list">
-          <li class="approach__item reveal">
-            <span class="approach__num"><span class="section-marker__arrow" aria-hidden="true">→</span> 01</span>
+    <!-- 03 · Method -->
+    <section class="section method" id="method" aria-labelledby="method-heading">
+      <div class="container method__grid">
+        <div class="method__head">
+          <p class="marker reveal"><span class="marker__num">03</span><span class="marker__rule"></span>Method</p>
+          <h2 id="method-heading" class="display display--sm reveal">How we work.</h2>
+          <p class="method__intro reveal">Four commitments. Every engagement. No exceptions negotiated at the kickoff.</p>
+        </div>
+
+        <ol class="method__list">
+          <li class="method__item reveal">
+            <span class="method__num mono">01</span>
             <div>
               <h3>Preserve human agency</h3>
-              <p>Preserving human agency in every AI-assisted workflow we design. Losing agency to automation is the disaster that can’t be averted after the fact.</p>
+              <p>Every AI-assisted workflow we design keeps a person in the loop with the authority to overrule. Losing agency to automation is the failure you cannot fix afterwards.</p>
             </div>
           </li>
-          <li class="approach__item reveal">
-            <span class="approach__num"><span class="section-marker__arrow" aria-hidden="true">→</span> 02</span>
+          <li class="method__item reveal">
+            <span class="method__num mono">02</span>
             <div>
               <h3>Embed domain scientists</h3>
-              <p>In-house pharmacologists and scientists, embedded on every engagement — we co-architect solutions with your domain experts, not around them.</p>
+              <p>Pharmacologists and research scientists sit inside the engagement, not in an advisory box. We co-architect with your experts, never around them.</p>
             </div>
           </li>
-          <li class="approach__item reveal">
-            <span class="approach__num"><span class="section-marker__arrow" aria-hidden="true">→</span> 03</span>
+          <li class="method__item reveal">
+            <span class="method__num mono">03</span>
             <div>
               <h3>Fix the question first</h3>
-              <p>The problem is never the engineers. It’s that the question being asked is wrong. We identify it, reframe it, and translate it into something engineering can actually build.</p>
+              <p>The problem is rarely the engineers. It is the brief. We find the wrong question, reframe it, and hand engineering something that is actually buildable.</p>
             </div>
           </li>
-          <li class="approach__item reveal">
-            <span class="approach__num"><span class="section-marker__arrow" aria-hidden="true">→</span> 04</span>
+          <li class="method__item reveal">
+            <span class="method__num mono">04</span>
             <div>
-              <h3>Stay as translation layer</h3>
-              <p>We don’t deliver a report and disappear. We stay — a permanent bridge between what your science demands and what your engineering can deliver.</p>
+              <h3>Stay as the translation layer</h3>
+              <p>We do not deliver a deck and leave. We remain a standing bridge between what the science demands and what the software can ship.</p>
             </div>
           </li>
         </ol>
       </div>
     </section>
 
-    <!-- 06 Selected Work -->
-    <section class="work section" id="work" aria-labelledby="work-heading">
+    <!-- 04 · Field record -->
+    <section class="section work" id="work" aria-labelledby="work-heading">
       <div class="container">
-        <p class="section-marker reveal"><span class="section-marker__arrow" aria-hidden="true">→</span> 04 · Selected work</p>
-        <div class="work__header reveal">
-          <h2 id="work-heading" class="section-title">Shipped at the frontier</h2>
-          <p class="work__intro">Anonymized engagements. Real problems. Outcomes your team can recognize.</p>
+        <div class="section-head">
+          <div>
+            <p class="marker reveal"><span class="marker__num">04</span><span class="marker__rule"></span>Field record</p>
+            <h2 id="work-heading" class="display display--sm reveal">Shipped at the frontier.</h2>
+          </div>
+          <p class="section-head__aside reveal">Anonymized engagements. Real problems. Outcomes your team will recognize.</p>
         </div>
-        <div class="work__rail" id="work-rail" aria-live="polite">
-          <!-- Populated by main.js from data/work.json -->
+
+        <div class="cases">
+          <a class="case case--featured reveal" href="works/genome-browser.html">
+            <figure class="media media--placeholder case__media" data-fig="Fig. 03"
+                    data-ad="STILL · 21:9 · Dark UI: a genome track viewer, variant annotations stacked as thin horizontal bars, one accent highlight. Alternative: macro of a sequencing flow cell under raking light, shallow depth.">
+            </figure>
+            <div class="case__body">
+              <p class="case__meta mono"><span>Pharma R&amp;D · Genomics</span><span>2023</span></p>
+              <h3 class="case__title">Genome intuition, made legible</h3>
+              <p class="case__summary">Genomic insight lived in notebooks and ad-hoc scripts. We co-architected a genome browser with embedded scientists so the reasoning stayed intact inside the platform.</p>
+              <p class="case__outcome">Scientists stopped exporting to desktop tools. Decision-ready views shipped inside the system.</p>
+              <span class="case__link mono">Read case<span class="arrow">→</span></span>
+            </div>
+          </a>
+
+          <a class="case reveal" href="works/synthesis-automation.html">
+            <figure class="media media--placeholder case__media" data-fig="Fig. 04"
+                    data-ad="STILL · 16:9 · Robotic liquid handler mid-motion, long exposure so the arm blurs while the deck stays sharp. Deck lit only by instrument LEDs.">
+            </figure>
+            <div class="case__body">
+              <p class="case__meta mono"><span>Biotech · Lab automation</span><span>2022</span></p>
+              <h3 class="case__title">Automation without losing the bench</h3>
+              <p class="case__outcome">Fewer silent failures. Operators recovered runs that previously became scrap.</p>
+              <span class="case__link mono">Read case<span class="arrow">→</span></span>
+            </div>
+          </a>
+
+          <a class="case reveal" href="works/clinical-reporting.html">
+            <figure class="media media--placeholder case__media" data-fig="Fig. 05"
+                    data-ad="STILL · 16:9 · Wider crop of Fig. 01: the taped printout in bench context, sample rack and monitor edge visible. Same light, same grain.">
+            </figure>
+            <div class="case__body">
+              <p class="case__meta mono"><span>Clinical · Reporting</span><span>2021</span></p>
+              <h3 class="case__title">The $38k wrong question</h3>
+              <p class="case__outcome">The wrong question cost $38,000. The right one was a print button.</p>
+              <span class="case__link mono">Read case<span class="arrow">→</span></span>
+            </div>
+          </a>
         </div>
-        <p class="work__cta reveal">
-          <a class="text-link" href="works/index.html">View all work →</a>
-        </p>
+
+        <p class="section-cta reveal"><a class="btn btn--ghost" href="works/index.html">All work</a></p>
       </div>
     </section>
 
-    <!-- 07 Client marks -->
-    <section class="logos section" id="logos" aria-labelledby="logos-heading">
+    <!-- Teams -->
+    <section class="section section--tight teams" id="teams" aria-labelledby="teams-heading">
       <div class="container">
-        <h2 id="logos-heading" class="sr-only">Teams we’ve shipped with</h2>
-        <p class="logos__caption reveal">Teams we’ve shipped with</p>
-        <ul class="logos__strip reveal" role="list">
+        <h2 id="teams-heading" class="marker reveal"><span class="marker__num">—</span><span class="marker__rule"></span>Teams we’ve shipped with</h2>
+        <!-- TODO: confirm permission for each name before launch; replace with monochrome marks where available -->
+        <ul class="teams__list mono reveal" role="list">
           <li>Takeda</li>
           <li>Bruker</li>
           <li>Biogen</li>
@@ -198,116 +325,123 @@
       </div>
     </section>
 
-    <!-- 08 Directions -->
-    <section class="directions section" id="directions" aria-labelledby="directions-heading">
+    <!-- 05 · Open problems -->
+    <section class="section problems" id="problems" aria-labelledby="problems-heading">
       <div class="container">
-        <p class="section-marker reveal"><span class="section-marker__arrow" aria-hidden="true">→</span> 05 · Directions</p>
-        <h2 id="directions-heading" class="section-title reveal">Where we’re already building</h2>
-        <ul class="directions__tags reveal" role="list">
-          <li>Semantic modelling</li>
-          <li>Small molecule design — generative models &amp; retrosynthesis</li>
-          <li>Pharmacovigilance</li>
-          <li>Patient care solutions with perfect UX</li>
-        </ul>
+        <div class="section-head">
+          <div>
+            <p class="marker reveal"><span class="marker__num">05</span><span class="marker__rule"></span>Open problems</p>
+            <h2 id="problems-heading" class="display display--sm reveal">Where we are already building.</h2>
+          </div>
+          <p class="section-head__aside reveal">Active lines of work. If your problem sits near one of these, the conversation is short.</p>
+        </div>
+        <ol class="problems__list">
+          <li class="reveal"><span class="mono">05.1</span><span>Semantic modelling of research knowledge</span></li>
+          <li class="reveal"><span class="mono">05.2</span><span>Small-molecule design — generative models and retrosynthesis</span></li>
+          <li class="reveal"><span class="mono">05.3</span><span>Pharmacovigilance signal detection</span></li>
+          <li class="reveal"><span class="mono">05.4</span><span>Patient-facing care tools that clinicians actually adopt</span></li>
+        </ol>
       </div>
     </section>
 
-    <!-- 09 Vision -->
-    <section class="vision section" id="vision" aria-labelledby="vision-heading">
+    <!-- 06 · Vision -->
+    <section class="section vision" id="vision" aria-labelledby="vision-heading">
       <div class="container">
-        <p class="section-marker reveal"><span class="section-marker__arrow" aria-hidden="true">→</span> 06 · Vision</p>
-        <div class="vision__header reveal">
-          <h2 id="vision-heading" class="section-title">Vision</h2>
-          <p class="vision__intro">
-            We publish vision.hmnd as a running analysis of where science, software, and AI are converging in pharma and biotech. No hype. No press releases. Just what’s actually happening at the frontier.
-          </p>
+        <div class="section-head">
+          <div>
+            <p class="marker reveal"><span class="marker__num">06</span><span class="marker__rule"></span>Vision</p>
+            <h2 id="vision-heading" class="display display--sm reveal">Field notes from the frontier.</h2>
+          </div>
+          <p class="section-head__aside reveal">A running analysis of where science, software, and AI converge in pharma and biotech. No press releases.</p>
         </div>
-        <div class="vision__feed" id="vision-feed" aria-live="polite">
+        <div class="vision__feed" id="vision-feed">
           <div class="vision__skeleton" aria-hidden="true">
             <div class="vision__skel vision__skel--lg"></div>
             <div class="vision__skel"></div>
             <div class="vision__skel"></div>
-            <div class="vision__skel vision__skel--sm"></div>
-            <div class="vision__skel vision__skel--sm"></div>
-            <div class="vision__skel vision__skel--sm"></div>
-            <div class="vision__skel vision__skel--sm"></div>
           </div>
         </div>
-        <p class="vision__cta reveal">
-          <a class="text-link" href="https://vision.hmnd.design" rel="noopener noreferrer" target="_blank">Read Vision →</a>
-        </p>
+        <p class="section-cta reveal"><a class="btn btn--ghost" href="https://vision.hmnd.design" rel="noopener noreferrer" target="_blank">Read Vision</a></p>
       </div>
     </section>
 
-    <!-- 10 Contact -->
-    <section class="contact section" id="contact" aria-labelledby="contact-heading">
+    <!-- 07 · Contact -->
+    <section class="section contact" id="contact" aria-labelledby="contact-heading">
+      <div class="grid-lines grid-lines--faint" aria-hidden="true"></div>
       <div class="container">
-        <p class="section-marker reveal"><span class="section-marker__arrow" aria-hidden="true">→</span> 07 · Contact</p>
-        <div class="contact__card reveal">
-          <h2 id="contact-heading" class="contact__title">
-            If you feel like I just described your last six months, we should talk.
-          </h2>
-
-          <div class="contact__paths">
-            <div class="contact__calendar" id="calendly-slot"
-                 data-calendly-url="">
-              <!-- Set data-calendly-url to your Calendly link when ready -->
-              <h3 class="contact__path-title">Schedule a call</h3>
-              <p class="contact__path-copy">Book time directly. No account managers. No layers.</p>
-              <a class="btn-primary magnetic contact__btn" id="calendly-cta" href="#contact-form">Schedule a call →</a>
-              <p class="contact__calendar-note" id="calendly-note" hidden>Calendar coming soon — use the form meanwhile.</p>
-            </div>
-
-            <div class="contact__form-wrap" id="contact-form">
-              <h3 class="contact__path-title">Send a brief</h3>
-              <form class="contact-form" id="lead-form" method="POST" action="REPLACE_ME">
-                <div class="form-row">
-                  <label for="name">Name</label>
-                  <input id="name" name="name" type="text" autocomplete="name" required />
-                </div>
-                <div class="form-row">
-                  <label for="email">Work email</label>
-                  <input id="email" name="email" type="email" autocomplete="email" required />
-                </div>
-                <div class="form-row">
-                  <label for="org">Organization</label>
-                  <input id="org" name="organization" type="text" autocomplete="organization" required />
-                </div>
-                <div class="form-row">
-                  <label for="stuck">What you’re stuck on</label>
-                  <textarea id="stuck" name="message" rows="4" required></textarea>
-                </div>
-                <div class="form-row">
-                  <label for="budget">Budget band <span class="optional">(optional)</span></label>
-                  <select id="budget" name="budget">
-                    <option value="">Prefer not to say</option>
-                    <option value="under-25k">Under $25k</option>
-                    <option value="25-75k">$25k – $75k</option>
-                    <option value="75-150k">$75k – $150k</option>
-                    <option value="150k-plus">$150k+</option>
-                  </select>
-                </div>
-                <button type="submit" class="btn-primary magnetic contact__btn">Send →</button>
-                <p class="form-fallback">
-                  Or email <a class="inline-link" href="mailto:hello@hmnd.design">hello@hmnd.design</a>
-                </p>
-                <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-              </form>
-            </div>
+        <p class="marker reveal"><span class="marker__num">07</span><span class="marker__rule"></span>Contact</p>
+        <div class="contact__grid">
+          <div class="contact__copy">
+            <h2 id="contact-heading" class="display display--sm reveal">Describe your last six months. We’ll tell you which question was wrong.</h2>
+            <dl class="ledger ledger--dark reveal">
+              <div><dt class="mono">Email</dt><dd><a class="inline-link" href="mailto:hello@hmnd.design">hello@hmnd.design</a></dd></div>
+              <div><dt class="mono">Response</dt><dd>Within two working days.</dd></div>
+              <div><dt class="mono">Hours</dt><dd><time id="local-time" datetime="">--:--</time> local · GMT+3</dd></div>
+              <div id="calendly-row" hidden><dt class="mono">Call</dt><dd><a class="inline-link" id="calendly-cta" href="#" data-calendly-url="">Book directly</a></dd></div>
+            </dl>
           </div>
+
+          <form class="form reveal" id="lead-form" method="POST" action="REPLACE_ME" novalidate>
+            <div class="form__row">
+              <label class="mono" for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required />
+            </div>
+            <div class="form__row">
+              <label class="mono" for="email">Work email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required />
+            </div>
+            <div class="form__row">
+              <label class="mono" for="org">Organization</label>
+              <input id="org" name="organization" type="text" autocomplete="organization" required />
+            </div>
+            <div class="form__row">
+              <label class="mono" for="stuck">What you’re stuck on</label>
+              <textarea id="stuck" name="message" rows="4" required></textarea>
+            </div>
+            <div class="form__row">
+              <label class="mono" for="budget">Budget band <span class="form__optional">optional</span></label>
+              <select id="budget" name="budget">
+                <option value="">Prefer not to say</option>
+                <option value="under-25k">Under $25k</option>
+                <option value="25-75k">$25k – $75k</option>
+                <option value="75-150k">$75k – $150k</option>
+                <option value="150k-plus">$150k+</option>
+              </select>
+            </div>
+            <input type="text" name="_gotcha" class="sr-only" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="form__foot">
+              <button type="submit" class="btn btn--primary">Send brief</button>
+              <p class="form__status mono" id="form-status" role="status" aria-live="polite"></p>
+            </div>
+          </form>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container site-footer__top">
-      <span>Since 2019</span>
-      <a href="https://vision.hmnd.design" rel="noopener noreferrer" target="_blank">Vision →</a>
-      <time id="local-time" datetime="">--:--</time>
-      <span>© 2026</span>
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <svg class="site-footer__mark" viewBox="0 0 187 46" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M35.8543 46H28.1103L32.2063 26.608H12.6223L8.52625 46H0.846253L10.4463 0.623997H18.1263L14.1583 19.376H33.7423L37.7103 0.623997H45.4543L35.8543 46ZM92.5453 46H84.9933L91.9693 12.976L71.4253 46H65.4733L57.9213 13.232L50.9453 46H43.5213L53.1213 0.623997H62.4013L70.3373 34.928L91.5213 0.623997H102.209L92.5453 46ZM136.931 46H129.123L115.171 11.824L107.939 46H100.259L109.859 0.623997H118.819L131.939 33.2L138.851 0.623997H146.595L136.931 46ZM153.772 38.896H162.476C170.092 38.896 178.796 32.496 178.796 19.504C178.796 12.016 173.996 7.6 166.252 7.6H160.428L153.772 38.896ZM162.348 46H144.684L154.22 0.623997H167.212C179.18 0.623997 186.604 8.048 186.604 19.184C186.604 36.72 174.572 46 162.348 46Z"/>
+        </svg>
+        <p class="site-footer__tag">The translation layer between science and software.</p>
+      </div>
+      <nav class="site-footer__nav mono" aria-label="Footer">
+        <a href="#thesis">Thesis</a>
+        <a href="#method">Method</a>
+        <a href="works/index.html">Work</a>
+        <a href="https://vision.hmnd.design" rel="noopener noreferrer" target="_blank">Vision</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="site-footer__readout mono">
+        <span>hello@hmnd.design</span>
+        <!-- TODO: add LinkedIn URL -->
+        <a href="#" rel="noopener noreferrer">LinkedIn</a>
+        <span>Est. 2019</span>
+        <span>© <span id="copyright-year">2026</span> HMND</span>
+      </div>
     </div>
-    <div class="site-footer__wordmark" aria-hidden="true">HMND</div>
   </footer>
 
   <script src="main.js" defer></script>

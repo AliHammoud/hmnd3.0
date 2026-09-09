@@ -1,126 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <script>document.documentElement.className = "js";</script>
   <title>Automation without losing the bench — HMND</title>
   <meta name="description" content="How HMND designed human-in-the-loop controls for robotic synthesis without stripping agency from the bench." />
+  <meta name="theme-color" content="#0a0a09" />
+  <link rel="canonical" href="https://hmnd.design/works/synthesis-automation.html" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230a0a09'/%3E%3Crect x='6' y='6' width='20' height='20' fill='none' stroke='%23f2f2ee' stroke-width='1.5'/%3E%3Ccircle cx='16' cy='16' r='3' fill='%238dff6a'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../style.css" />
 </head>
-<body class="page-case">
+<body>
   <a class="skip-link" href="#main">Skip to content</a>
 
   <header class="site-header" id="site-header">
-    <div class="site-header__inner">
-      <a href="../index.html" class="logo" id="logo" aria-label="HMND home">
-        <img src="../assets/img/HMND_logo.svg" alt="" class="logo__img" width="187" height="46" />
-      </a>
-      <nav class="nav" aria-label="Primary">
-        <a href="../index.html#who">Who we are</a>
-        <a href="../index.html#approach">Approach</a>
-        <a href="index.html" class="is-active" aria-current="page">Work</a>
-        <a href="../index.html#vision" class="nav__vision">
-          Vision
-          <span class="nav__dot" id="vision-dot" hidden aria-hidden="true"></span>
+    <div class="site-header__bar">
+      <div class="container site-header__inner">
+        <a href="../index.html" class="logo" aria-label="HMND — home">
+          <svg class="logo__mark" viewBox="0 0 187 46" width="187" height="46" aria-hidden="true" focusable="false">
+            <path fill="currentColor" d="M35.8543 46H28.1103L32.2063 26.608H12.6223L8.52625 46H0.846253L10.4463 0.623997H18.1263L14.1583 19.376H33.7423L37.7103 0.623997H45.4543L35.8543 46ZM92.5453 46H84.9933L91.9693 12.976L71.4253 46H65.4733L57.9213 13.232L50.9453 46H43.5213L53.1213 0.623997H62.4013L70.3373 34.928L91.5213 0.623997H102.209L92.5453 46ZM136.931 46H129.123L115.171 11.824L107.939 46H100.259L109.859 0.623997H118.819L131.939 33.2L138.851 0.623997H146.595L136.931 46ZM153.772 38.896H162.476C170.092 38.896 178.796 32.496 178.796 19.504C178.796 12.016 173.996 7.6 166.252 7.6H160.428L153.772 38.896ZM162.348 46H144.684L154.22 0.623997H167.212C179.18 0.623997 186.604 8.048 186.604 19.184C186.604 36.72 174.572 46 162.348 46Z"/>
+          </svg>
         </a>
-        <a href="../index.html#contact" class="nav__contact" id="nav-contact">Contact</a>
-      </nav>
-      <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-        <span></span><span></span>
-      </button>
+        <nav class="nav" aria-label="Primary">
+          <a href="../index.html#thesis">Thesis</a>
+          <a href="../index.html#method">Method</a>
+          <a href="index.html" aria-current="page">Work</a>
+          <a href="../index.html#vision">Vision</a>
+          <a href="../index.html#contact">Contact</a>
+        </nav>
+        <div class="site-header__readout mono" aria-hidden="true"><span id="local-time-header">--:--</span></div>
+        <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu"><span></span><span></span></button>
+      </div>
     </div>
-    <nav class="mobile-nav" id="mobile-nav" hidden>
-      <a href="../index.html#who">Who we are</a>
-      <a href="../index.html#approach">Approach</a>
-      <a href="index.html" aria-current="page">Work</a>
-      <a href="../index.html#vision">Vision</a>
-      <a href="../index.html#contact">Contact</a>
+    <nav class="mobile-nav" id="mobile-nav" hidden aria-label="Primary mobile">
+      <div class="container mobile-nav__inner">
+        <a href="../index.html#thesis"><span class="mono">01</span>Thesis</a>
+        <a href="../index.html#method"><span class="mono">02</span>Method</a>
+        <a href="index.html"><span class="mono">03</span>Work</a>
+        <a href="../index.html#vision"><span class="mono">04</span>Vision</a>
+        <a href="../index.html#contact"><span class="mono">05</span>Contact</a>
+        <p class="mobile-nav__foot mono">hello@hmnd.design · GMT+3</p>
+      </div>
     </nav>
   </header>
 
-  <main id="main" class="case-page">
+  <main id="main" class="study">
     <div class="container">
-      <a class="case-back reveal" href="index.html">← Work</a>
+      <a class="back mono reveal" href="index.html">← Field record</a>
 
-      <header class="case-header reveal">
-        <p class="case-header__meta">
-          <span>Biotech · Lab automation</span>
-          <span>2022</span>
-        </p>
-        <h1 class="case-header__title">Automation without losing the bench</h1>
-        <p class="case-header__subtitle">Human-in-the-loop controls so operators can intervene when the science drifts.</p>
+      <header class="study__head">
+        <p class="study__meta mono reveal"><span>Case 02 / 03</span><span>Biotech · Lab automation</span><span>2022</span></p>
+        <h1 class="display reveal">
+          <span class="line"><span class="line__inner">Automation without</span></span>
+          <span class="line"><span class="line__inner">losing the bench.</span></span>
+        </h1>
+        <p class="study__sub reveal">Human-in-the-loop controls so operators can intervene the moment the science drifts — without ripping out the automation already in place.</p>
       </header>
 
-      <div class="case-layout">
-        <div class="case-intro reveal">
-          <p class="case-summary">
-            Robotic synthesis runs were technically correct but opaque — operators couldn’t intervene when the science drifted. We designed human-in-the-loop controls and exception surfaces on top of existing automation, without stripping agency from the bench.
+      <figure class="media media--placeholder study__hero reveal" data-fig="Fig. 04"
+              data-ad="STILL · 21:9 · Robotic liquid handler mid-motion. Long exposure: the arm is a blur, the deck and tips are pin-sharp. Only instrument LEDs light the scene. Deep black surround.">
+        <figcaption class="media__caption mono">Fig. 04 — Deck, long exposure</figcaption>
+      </figure>
+
+      <div class="study__grid">
+        <div class="study__intro reveal">
+          <p class="lead study__summary">
+            Robotic synthesis runs were technically correct but opaque — operators could not intervene when the chemistry drifted. We designed human-in-the-loop controls and exception surfaces on top of the existing automation, without stripping agency from the bench.
           </p>
-          <div class="case-actions">
-            <a class="btn-primary magnetic" href="../index.html?topic=Biotech%20%C2%B7%20Lab%20automation%3A%20Automation%20without%20losing%20the%20bench#contact">Discuss a similar problem →</a>
-          </div>
+          <a class="btn btn--primary" href="../index.html?topic=Biotech%20%C2%B7%20Lab%20automation%3A%20Automation%20without%20losing%20the%20bench#contact">Discuss a similar problem</a>
         </div>
 
-        <dl class="case-spec reveal">
-          <div class="case-spec__row">
-            <dt class="case-spec__label">Services</dt>
-            <dd class="case-spec__value case-spec__chips">
-              <span>Product strategy</span>
-              <span>Automation UX</span>
-              <span>Systems design</span>
+        <dl class="spec reveal">
+          <div class="spec__row">
+            <dt class="mono">Services</dt>
+            <dd><ul class="spec__tags mono"><li>Product strategy</li><li>Automation UX</li><li>Systems design</li></ul></dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">Industries</dt>
+            <dd><ul class="spec__tags mono"><li>Biotech</li><li>Lab automation</li><li>Chemical synthesis</li></ul></dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">Challenge</dt>
+            <dd>Keep robotic synthesis reliable while giving operators a real way to intervene when the science drifts — without replacing the automation stack.</dd>
+          </div>
+          <div class="spec__row">
+            <dt class="mono">What we did</dt>
+            <dd>
+              <ol class="spec__list">
+                <li><span class="mono">01</span><span>Audited where silent failures hid inside otherwise “correct” robotic runs.</span></li>
+                <li><span class="mono">02</span><span>Designed human-in-the-loop controls and exception surfaces on the existing automation.</span></li>
+                <li><span class="mono">03</span><span>Kept bench operators inside the decision loop instead of automating their judgement away.</span></li>
+                <li><span class="mono">04</span><span>Made recoverable drift visible early enough to act on.</span></li>
+              </ol>
             </dd>
           </div>
-          <div class="case-spec__row">
-            <dt class="case-spec__label">Industries</dt>
-            <dd class="case-spec__value case-spec__chips">
-              <span>Biotech</span>
-              <span>Lab automation</span>
-              <span>Chemical synthesis</span>
-            </dd>
-          </div>
-          <div class="case-spec__row">
-            <dt class="case-spec__label">Challenge</dt>
-            <dd class="case-spec__value">
-              Keep robotic synthesis reliable while giving operators a real way to intervene when science drifts — without ripping out the automation already in place.
-            </dd>
-          </div>
-          <div class="case-spec__row">
-            <dt class="case-spec__label">What we did</dt>
-            <dd class="case-spec__value">
-              <ul class="case-spec__list">
-                <li>Audited where silent failures hid inside otherwise “correct” robotic runs</li>
-                <li>Designed human-in-the-loop controls and exception surfaces on existing automation</li>
-                <li>Kept bench operators in the decision loop instead of automating agency away</li>
-                <li>Reduced scrap by making recoverable drifts visible early enough to act</li>
-              </ul>
-            </dd>
+          <div class="spec__row">
+            <dt class="mono">Outcome</dt>
+            <dd>Fewer silent failures. Operators recovered runs that previously became scrap.</dd>
           </div>
         </dl>
       </div>
 
-      <figure class="case-media reveal">
-        <img src="../assets/img/work/synthesis-automation.svg" alt="" width="1600" height="1000" />
-      </figure>
+      <div class="study__gallery">
+        <figure class="media media--placeholder reveal" data-fig="Fig. 04a"
+                data-ad="STILL · 16:9 · Exception surface UI: a dark run timeline with one flagged step, a single accent marker, operator action buttons. Mono labels.">
+          <figcaption class="media__caption mono">Fig. 04a — Exception surface</figcaption>
+        </figure>
+        <figure class="media media--placeholder reveal" data-fig="Fig. 04b"
+                data-ad="STILL · 16:9 · Operator’s gloved hand resting on the deck edge next to the emergency stop. Shallow depth, no face.">
+          <figcaption class="media__caption mono">Fig. 04b — The bench</figcaption>
+        </figure>
+      </div>
 
-      <div class="case-next reveal">
-        <p class="case-next__label">Next case</p>
-        <a class="case-next__link" href="clinical-reporting.html">The $38k wrong question →</a>
+      <div class="study__next reveal">
+        <p class="study__next-label mono">Next case — 03 / 03</p>
+        <a class="study__next-link" href="clinical-reporting.html">The $38k wrong question →</a>
       </div>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="container site-footer__top">
-      <span>Since 2019</span>
-      <a href="https://vision.hmnd.design" rel="noopener noreferrer" target="_blank">Vision →</a>
-      <time id="local-time" datetime="">--:--</time>
-      <span>© 2026</span>
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <svg class="site-footer__mark" viewBox="0 0 187 46" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M35.8543 46H28.1103L32.2063 26.608H12.6223L8.52625 46H0.846253L10.4463 0.623997H18.1263L14.1583 19.376H33.7423L37.7103 0.623997H45.4543L35.8543 46ZM92.5453 46H84.9933L91.9693 12.976L71.4253 46H65.4733L57.9213 13.232L50.9453 46H43.5213L53.1213 0.623997H62.4013L70.3373 34.928L91.5213 0.623997H102.209L92.5453 46ZM136.931 46H129.123L115.171 11.824L107.939 46H100.259L109.859 0.623997H118.819L131.939 33.2L138.851 0.623997H146.595L136.931 46ZM153.772 38.896H162.476C170.092 38.896 178.796 32.496 178.796 19.504C178.796 12.016 173.996 7.6 166.252 7.6H160.428L153.772 38.896ZM162.348 46H144.684L154.22 0.623997H167.212C179.18 0.623997 186.604 8.048 186.604 19.184C186.604 36.72 174.572 46 162.348 46Z"/>
+        </svg>
+        <p class="site-footer__tag">The translation layer between science and software.</p>
+      </div>
+      <nav class="site-footer__nav mono" aria-label="Footer">
+        <a href="../index.html#thesis">Thesis</a>
+        <a href="../index.html#method">Method</a>
+        <a href="index.html">Work</a>
+        <a href="https://vision.hmnd.design" rel="noopener noreferrer" target="_blank">Vision</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+      <div class="site-footer__readout mono">
+        <span>hello@hmnd.design</span>
+        <a href="#" rel="noopener noreferrer">LinkedIn</a>
+        <span>Est. 2019</span>
+        <span>© <span id="copyright-year">2026</span> HMND</span>
+      </div>
     </div>
-    <div class="site-footer__wordmark" aria-hidden="true">HMND</div>
   </footer>
 
   <script src="../main.js" defer></script>
