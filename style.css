@@ -648,20 +648,61 @@ body.nav-open {
   border: none;
   aspect-ratio: auto;
   background-color: var(--color-surface);
+  container-type: size;
 }
 
 .hero__media::before {
   display: none;
 }
 
-.hero__media > video,
-.hero__media > img {
+.hero__stage {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: max(100cqw, calc(100cqh * 1289 / 832));
+  height: max(100cqh, calc(100cqw * 832 / 1289));
+  transform: translate(-50%, -50%);
   animation: kenburns 28s var(--ease-inout) infinite alternate;
 }
 
+.hero__stage > video,
+.hero__stage > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
+
+.hero__screen {
+  position: absolute;
+  z-index: 2;
+  left: calc(437 / 1289 * 100%);
+  top: calc(127 / 832 * 100%);
+  width: calc(414 / 1289 * 100%);
+  height: calc(231 / 832 * 100%);
+  overflow: hidden;
+  isolation: isolate;
+  background: #000;
+  pointer-events: none;
+}
+
+.hero__screen-viz {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.hero__screen-viz canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 @keyframes kenburns {
-  from { transform: scale(1); }
-  to { transform: scale(1.06); }
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.06); }
 }
 
 .hero__media.media--placeholder::after {
@@ -728,7 +769,8 @@ body.nav-open {
   gap: var(--space-6);
   align-items: end;
   padding-top: var(--space-6);
-  border-top: 1px solid var(--color-border-strong);
+  /* border-top: 1px solid var(--color-border-strong); */
+  border-top: none;
 }
 
 .hero__sub {
@@ -1664,6 +1706,14 @@ body.nav-open {
   color: var(--color-text-muted);
 }
 
+.page-head .ledger {
+  margin-top: var(--space-8);
+}
+
+.page-head .btn {
+  margin-top: var(--space-8);
+}
+
 .works {
   padding-bottom: var(--section-py);
 }
@@ -1886,8 +1936,7 @@ body.nav-open {
     transition: none;
   }
 
-  .hero__media > video,
-  .hero__media > img,
+  .hero__stage,
   .vision__skel,
   .blink {
     animation: none;

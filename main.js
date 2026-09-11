@@ -1,12 +1,13 @@
 /**
  * HMND — interactions v3.0
- * Config: set FORM_ENDPOINT and CALENDLY_URL before launch.
+ * Config: set FORM_ENDPOINT (Forminit form ID) and CALENDLY_URL before launch.
  */
 (function () {
   "use strict";
 
   // —— Config ——
-  const FORM_ENDPOINT = "REPLACE_ME"; // Formspree / Getform URL. Leave REPLACE_ME for mailto fallback.
+  const FORM_ENDPOINT = "https://forminit.com/f/ozloprvsf7j";
+  const FORM_SUCCESS_URL = "https://hmnd.design/talk_soon";
   const CALENDLY_URL = ""; // e.g. https://calendly.com/your-link — empty hides the "Book directly" row.
   const VISION_FEED_URL = "https://vision.hmnd.design/feed.json";
   const CONTACT_EMAIL = "hello@hmnd.design";
@@ -341,9 +342,61 @@
   // —— Lead form ——
   const form = $("#lead-form");
   const formStatus = $("#form-status");
+  const ZONES = window.HMND_TLDS;
 
   function setStatus(msg) {
     if (formStatus) formStatus.textContent = msg;
+  }
+
+  function emailProblem(value) {
+    const email = String(value || "").trim();
+    if (!email) return "We’ll need an email to reply to.";
+    if (email.length > 254) return "That address is longer than email allows.";
+
+    const at = email.indexOf("@");
+    if (at < 1) return "An email without an @ is just a username.";
+    if (email.indexOf("@", at + 1) !== -1) return "One @. That’s the deal.";
+
+    const local = email.slice(0, at);
+    const domain = email.slice(at + 1);
+    if (
+      !local ||
+      local.startsWith(".") ||
+      local.endsWith(".") ||
+      local.includes("..") ||
+      !/^[A-Za-z0-9._%+\-]+$/.test(local)
+    ) {
+      return "The part before the @ isn’t an address we can send to.";
+    }
+    if (!domain.includes(".")) return "A domain needs a name and a zone. Like company.com.";
+
+    let host;
+    try {
+      host = new URL(`http://${domain}`).hostname;
+    } catch {
+      return "That domain isn’t shaped like one.";
+    }
+    if (!host || host.includes("..") || host.startsWith(".") || host.endsWith(".")) {
+      return "That domain isn’t shaped like one.";
+    }
+
+    const labels = host.split(".");
+    if (labels.length < 2) return "A domain needs a name and a zone. Like company.com.";
+
+    const zone = labels[labels.length - 1];
+    const typedZone = domain.split(".").pop() || zone;
+    if (!ZONES || !ZONES.has(zone)) {
+      const shown = typedZone.length > 24 ? `${typedZone.slice(0, 21)}…` : typedZone;
+      return `We haven’t heard of a .${shown} zone.`;
+    }
+
+    const nameLabels = labels.slice(0, -1);
+    const labelOk = (label) =>
+      /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,61}[A-Za-z0-9])?$/.test(label) || /^[A-Za-z0-9]$/.test(label);
+    if (nameLabels.some((label) => !labelOk(label))) {
+      return "That domain isn’t shaped like one.";
+    }
+    return "";
   }
 
   function mailtoFallback(data) {
@@ -362,27 +415,41 @@
   }
 
   if (form) {
-    const hasEndpoint = FORM_ENDPOINT && FORM_ENDPOINT !== "REPLACE_ME";
+    const hasEndpoint =
+      Boolean(FORM_ENDPOINT) &&
+      FORM_ENDPOINT.startsWith("https://") &&
+      !FORM_ENDPOINT.includes("YOUR_FORM_ID");
     if (hasEndpoint) form.action = FORM_ENDPOINT;
+
+    const emailEl = $("#email", form);
+    if (emailEl) {
+      emailEl.addEventListener("input", () => {
+        emailEl.setCustomValidity(emailProblem(emailEl.value));
+      });
+    }
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      const emailIssue = emailEl ? emailProblem(emailEl.value) : "";
+      if (emailEl) emailEl.setCustomValidity(emailIssue);
+
       if (!form.checkValidity()) {
         form.reportValidity();
-        setStatus("A few fields still need attention.");
+        setStatus(emailIssue || "A few fields still need attention.");
         return;
       }
 
       const fd = new FormData(form);
       if (String(fd.get("_gotcha") || "").trim()) return; // honeypot
+      fd.delete("_gotcha");
 
       const data = {
-        name: String(fd.get("name") || "").trim(),
-        email: String(fd.get("email") || "").trim(),
-        organization: String(fd.get("organization") || "").trim(),
-        message: String(fd.get("message") || "").trim(),
-        budget: String(fd.get("budget") || "").trim(),
+        name: String(fd.get("fi-sender-fullName") || "").trim(),
+        email: String(fd.get("fi-sender-email") || "").trim(),
+        organization: String(fd.get("fi-sender-company") || "").trim(),
+        message: String(fd.get("fi-text-message") || "").trim(),
+        budget: String(fd.get("fi-select-budget") || "").trim(),
       };
 
       if (!hasEndpoint) {
@@ -391,6 +458,22 @@
         return;
       }
 
+      // file:// pages cannot fetch other origins. POST the form as a navigation instead.
+      const canFetch = location.protocol === "http:" || location.protocol === "https:";
+      if (!canFetch) {
+        const honey = form.querySelector('[name="_gotcha"]');
+        if (honey) honey.disabled = true;
+        if (!data.budget) {
+          const budget = form.querySelector('[name="fi-select-budget"]');
+          if (budget) budget.disabled = true;
+        }
+        setStatus("Sending…");
+        form.submit();
+        return;
+      }
+
+      if (!data.budget) fd.delete("fi-select-budget");
+
       try {
         setStatus("Sending…");
         const res = await fetch(FORM_ENDPOINT, {
@@ -398,12 +481,17 @@
           headers: { Accept: "application/json" },
           body: fd,
         });
-        if (!res.ok) throw new Error("submit failed");
-        form.reset();
-        setStatus("Received. We reply within two working days.");
+        const payload = await res.json().catch(() => ({}));
+        if (res.status === 429) {
+          setStatus("Too many attempts. Wait a few seconds and try again.");
+          return;
+        }
+        if (!res.ok || payload.success === false) {
+          throw new Error(payload.message || "submit failed");
+        }
+        window.location.assign(FORM_SUCCESS_URL);
       } catch {
-        mailtoFallback(data);
-        setStatus("Endpoint unavailable — opening email instead.");
+        setStatus("Couldn’t send. Try again, or email hello@hmnd.design.");
       }
     });
   }

@@ -76,8 +76,13 @@
     <!-- 00 · Hero -->
     <section class="hero" id="top" aria-labelledby="hero-heading">
       <div class="hero__media media" aria-hidden="true">
-        <img src="assets/img/assets/hero.png" alt="" width="1289" height="832" fetchpriority="high" />
-        <div class="hero__scrim"></div>
+        <div class="hero__stage">
+          <img src="assets/img/assets/hero.png" alt="" width="1289" height="832" fetchpriority="high" />
+          <div class="hero__scrim"></div>
+          <div class="hero__screen">
+            <div class="hero__screen-viz" id="hero-screen-viz"></div>
+          </div>
+        </div>
         <div class="grid-lines" aria-hidden="true"></div>
       </div>
 
@@ -437,26 +442,26 @@
             </dl>
           </div>
 
-          <form class="form reveal" id="lead-form" method="POST" action="REPLACE_ME" novalidate>
+          <form class="form reveal" id="lead-form" method="POST" action="https://forminit.com/f/ozloprvsf7j" novalidate>
             <div class="form__row">
               <label class="mono" for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" required />
+              <input id="name" name="fi-sender-fullName" type="text" autocomplete="name" required />
             </div>
             <div class="form__row">
               <label class="mono" for="email">Work email</label>
-              <input id="email" name="email" type="email" autocomplete="email" required />
+              <input id="email" name="fi-sender-email" type="email" autocomplete="email" inputmode="email" spellcheck="false" maxlength="254" required />
             </div>
             <div class="form__row">
               <label class="mono" for="org">Organization</label>
-              <input id="org" name="organization" type="text" autocomplete="organization" required />
+              <input id="org" name="fi-sender-company" type="text" autocomplete="organization" required />
             </div>
             <div class="form__row">
               <label class="mono" for="stuck">What you’re stuck on</label>
-              <textarea id="stuck" name="message" rows="4" required></textarea>
+              <textarea id="stuck" name="fi-text-message" rows="4" required></textarea>
             </div>
             <div class="form__row">
               <label class="mono" for="budget">Budget band <span class="form__optional">optional</span></label>
-              <select id="budget" name="budget">
+              <select id="budget" name="fi-select-budget">
                 <option value="">Prefer not to say</option>
                 <option value="under-25k">Under $25k</option>
                 <option value="25-75k">$25k – $75k</option>
@@ -500,6 +505,10 @@
     </div>
   </footer>
 
+  <script src="nucleotide-life.js" defer></script>
+  <script src="nucleotide-life-renderer.js" defer></script>
+  <script src="nucleotide-life-driver.js" defer></script>
+  <script src="tlds.js" defer></script>
   <script src="main.js" defer></script>
 </body>
 </html>
