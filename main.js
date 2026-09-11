@@ -105,6 +105,174 @@
     else lightsObserver.observe(el);
   });
 
+  // —— Intermezzo: HMND as a degenerate sequence (72 readings) ——
+  (function initSequence() {
+    const root = $("#sequence");
+    if (!root) return;
+    const fig = $("#sequence-fig");
+    const letters = $$(".intermezzo__letter", root);
+    if (!letters.length) return;
+
+    const CODES = {
+      H: ["A", "C", "T"],
+      M: ["A", "C"],
+      N: ["A", "C", "G", "T"],
+      D: ["A", "G", "T"],
+    };
+    const TOTAL = 72;
+    const SCRAMBLE_MS = [55, 70, 85, 100];
+    const RECOMBINE_AFTER = 2000;
+
+    function readingNumber(state) {
+      let n = 0;
+      let stride = TOTAL;
+      state.forEach((s) => {
+        stride /= s.bases.length;
+        n += s.index * stride;
+      });
+      return n + 1;
+    }
+
+    function setFig(text) {
+      if (fig) fig.textContent = text;
+    }
+
+    if (reduceMotion()) {
+      letters.forEach((el) => {
+        el.textContent = el.dataset.code;
+      });
+      setFig("Fig. 02a — HMND · 72 readings");
+      return;
+    }
+
+    const state = letters.map((el, i) => ({
+      el,
+      code: el.dataset.code,
+      bases: CODES[el.dataset.code] || ["N"],
+      index: 0,
+      held: false,
+      timer: 0,
+      period: SCRAMBLE_MS[i] ?? 80,
+    }));
+
+    state.forEach((s) => {
+      s.el.textContent = s.bases[s.index];
+    });
+    setFig(`Fig. 02a — ${readingNumber(state)} of 72 readings`);
+
+    function updateFig() {
+      setFig(`Fig. 02a — ${readingNumber(state)} of 72 readings`);
+    }
+
+    let running = false;
+    let recombined = false;
+    let recombineTimer = 0;
+
+    function step(s) {
+      s.timer = window.setTimeout(() => {
+        if (running && !s.held) {
+          s.index = (s.index + 1) % s.bases.length;
+          s.el.textContent = s.bases[s.index];
+          updateFig();
+        }
+        if (running) step(s);
+        else s.timer = 0;
+      }, s.period);
+    }
+
+    function start() {
+      if (running || recombined) return;
+      running = true;
+      state.forEach((s) => {
+        if (!s.timer) step(s);
+      });
+    }
+
+    function stop() {
+      running = false;
+      state.forEach((s) => {
+        window.clearTimeout(s.timer);
+        s.timer = 0;
+      });
+    }
+
+    function recombine() {
+      if (recombined) return;
+      recombined = true;
+      stop();
+      state.forEach((s, i) => {
+        window.setTimeout(() => {
+          s.el.textContent = s.code;
+        }, i * 40);
+      });
+      setFig("Fig. 02a — HMND · 72 readings");
+    }
+
+    function reset() {
+      window.clearTimeout(recombineTimer);
+      recombineTimer = 0;
+      recombined = false;
+      stop();
+      state.forEach((s) => {
+        s.index = 0;
+        s.el.textContent = s.bases[0];
+        release(s);
+      });
+      updateFig();
+    }
+
+    function hold(s) {
+      s.held = true;
+      s.el.classList.add("is-held");
+    }
+
+    function release(s) {
+      s.held = false;
+      s.el.classList.remove("is-held");
+    }
+
+    state.forEach((s) => {
+      s.el.addEventListener("pointerenter", () => hold(s));
+      s.el.addEventListener("pointerleave", () => release(s));
+      s.el.addEventListener("pointerdown", (e) => {
+        if (e.pointerType === "mouse") return;
+        hold(s);
+      });
+      s.el.addEventListener("pointerup", (e) => {
+        if (e.pointerType === "mouse") return;
+        release(s);
+      });
+      s.el.addEventListener("pointercancel", () => release(s));
+    });
+
+    const vis = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            reset();
+            return;
+          }
+          start();
+          if (!recombineTimer && !recombined) {
+            recombineTimer = window.setTimeout(recombine, RECOMBINE_AFTER);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+    vis.observe(root);
+
+    motionQuery.addEventListener?.("change", () => {
+      if (!reduceMotion()) return;
+      reset();
+      recombined = true;
+      state.forEach((s) => {
+        s.el.textContent = s.code;
+      });
+      setFig("Fig. 02a — HMND · 72 readings");
+    });
+  })();
+
   // —— Mobile nav ——
   const toggle = $("#nav-toggle");
   const mobileNav = $("#mobile-nav");

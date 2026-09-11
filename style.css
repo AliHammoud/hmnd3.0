@@ -1046,6 +1046,73 @@ body.nav-open {
   }
 }
 
+/* —— Intermezzo (degenerate sequence) —— */
+.intermezzo {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  overflow: hidden;
+}
+
+.intermezzo__stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-8) var(--gutter);
+}
+
+.intermezzo__seq {
+  display: flex;
+  justify-content: center;
+  gap: clamp(12px, 3vw, 40px);
+  font-family: var(--font-mono);
+  font-size: clamp(4.25rem, 16vw, 13rem);
+  font-weight: 500;
+  line-height: 0.85;
+  letter-spacing: -0.04em;
+  user-select: none;
+}
+
+.intermezzo__letter {
+  display: block;
+  width: 1ch;
+  text-align: center;
+  color: var(--color-text);
+  cursor: default;
+  touch-action: pan-y;
+  transition: color var(--duration-fast) ease;
+}
+
+.intermezzo__letter.is-held {
+  color: var(--color-accent);
+}
+
+.intermezzo__corners {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+  width: min(100% - (var(--gutter) * 2), var(--container-max));
+  margin-inline: auto;
+  padding-bottom: var(--space-4);
+  color: var(--color-text-dim);
+}
+
+.intermezzo__key {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .intermezzo__key {
+    display: inline;
+  }
+}
+
 /* —— Thesis (paper) —— */
 .thesis .display {
   margin-bottom: var(--space-10);
@@ -1828,7 +1895,8 @@ body.nav-open {
 
   .start,
   .start :is(p, h2, dt, dd, span, div, dl, a:not(.btn)),
-  .start__lamp {
+  .start__lamp,
+  .intermezzo__letter {
     transition: none;
   }
 

@@ -75,14 +75,8 @@
 
     <!-- 00 · Hero -->
     <section class="hero" id="top" aria-labelledby="hero-heading">
-      <div class="hero__media media media--placeholder media--video"
-           data-ad="VIDEO · 12–20s seamless loop · 2.39:1 · Slow lateral dolly across an automated liquid-handling deck or sequencing lab at night. Instrument LEDs the only light source. Desaturated, deep blacks, fine grain, no people, no logos. Motion under 5% of frame per second."
-           aria-hidden="true">
-        <!-- Drop in when supplied:
-        <video autoplay muted loop playsinline poster="assets/video/hero-poster.jpg">
-          <source src="assets/video/hero.mp4" type="video/mp4" />
-        </video>
-        -->
+      <div class="hero__media media" aria-hidden="true">
+        <img src="assets/img/assets/hero.png" alt="" width="1289" height="832" fetchpriority="high" />
         <div class="hero__scrim"></div>
         <div class="grid-lines" aria-hidden="true"></div>
       </div>
@@ -210,6 +204,28 @@
 
           <p class="start__cta reveal"><a class="btn btn--primary" href="?topic=Mapping%20engagement#contact">Start with a mapping engagement</a></p>
         </div>
+      </div>
+    </section>
+
+    <!-- — · Intermezzo
+         H, M, N and D are IUPAC nucleotide ambiguity codes
+         (H = A/C/T, M = A/C, N = any, D = A/G/T), so HMND is a
+         degenerate sequence with 72 specified expansions.
+         Unnumbered on purpose: it sits between 02 and 03.
+    -->
+    <section class="intermezzo" id="sequence" aria-label="HMND is a degenerate DNA sequence. Each letter is an IUPAC ambiguity code; together they have seventy-two possible readings.">
+      <div class="grid-lines grid-lines--faint" aria-hidden="true"></div>
+      <div class="intermezzo__stage" aria-hidden="true">
+        <div class="intermezzo__seq" id="sequence-letters">
+          <span class="intermezzo__letter" data-code="H">H</span>
+          <span class="intermezzo__letter" data-code="M">M</span>
+          <span class="intermezzo__letter" data-code="N">N</span>
+          <span class="intermezzo__letter" data-code="D">D</span>
+        </div>
+      </div>
+      <div class="intermezzo__corners mono" aria-hidden="true">
+        <span id="sequence-fig">Fig. 02a — 72 readings</span>
+        <span class="intermezzo__key">H=A/C/T · M=A/C · N=any · D=A/G/T</span>
       </div>
     </section>
 
