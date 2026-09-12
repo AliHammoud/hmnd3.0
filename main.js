@@ -274,6 +274,20 @@
     });
   })();
 
+  // —— Principal portrait: hover / press swap ——
+  (function initPrincipalPortrait() {
+    const portrait = $(".principal__portrait");
+    if (!portrait) return;
+
+    const press = () => portrait.classList.add("is-pressed");
+    const release = () => portrait.classList.remove("is-pressed");
+
+    portrait.addEventListener("pointerdown", press);
+    portrait.addEventListener("pointerup", release);
+    portrait.addEventListener("pointercancel", release);
+    portrait.addEventListener("pointerleave", release);
+  })();
+
   // —— Mobile nav ——
   const toggle = $("#nav-toggle");
   const mobileNav = $("#mobile-nav");

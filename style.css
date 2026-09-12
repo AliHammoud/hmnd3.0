@@ -978,14 +978,15 @@ body.nav-open {
   }
 }
 
-/* —— How this starts (lights on) —— */
+/* —— Lights on (start, contact) —— */
 /* Default state is lit (paper) so no-JS renders normally.
    With JS the room's background starts dark; once 28% of the section has
    scrolled into view, main.js adds .is-lit and it simply transitions to
    paper. The text is ALWAYS ink-black — it is never itself recoloured. It
    goes from illegible (black on near-black) to legible (black on paper)
    purely because the background changed underneath it. */
-.start {
+.start,
+.contact {
   --color-bg: var(--color-paper);
   --color-surface: var(--color-paper-2);
   --color-surface-2: var(--color-paper-2);
@@ -999,7 +1000,34 @@ body.nav-open {
   transition: background-color var(--duration-slow) var(--ease-out);
 }
 
-.js .start:not(.is-lit) {
+.js .start:not(.is-lit),
+.js .contact:not(.is-lit) {
+  --color-bg: #0a0a09;
+  --color-surface: #111110;
+  --color-surface-2: #171716;
+  --color-border: #1a1a18;
+  --color-border-strong: #24241f;
+}
+
+/* Homepage footer rides the contact lights so the page ends on paper,
+   not a dark strip under a white room. */
+body:has(#contact[data-lights]) .site-footer {
+  --color-bg: var(--color-paper);
+  --color-surface: var(--color-paper-2);
+  --color-surface-2: var(--color-paper-2);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-ink-muted);
+  --color-text-dim: #8a8a85;
+  --color-border: var(--color-border-paper);
+  --color-border-strong: #a9a9a3;
+  background-color: var(--color-bg);
+  border-top-color: var(--color-border);
+  transition:
+    background-color var(--duration-slow) var(--ease-out),
+    border-color var(--duration-slow) var(--ease-out);
+}
+
+.js body:has(#contact:not(.is-lit)) .site-footer {
   --color-bg: #0a0a09;
   --color-surface: #111110;
   --color-surface-2: #171716;
@@ -1011,11 +1039,13 @@ body.nav-open {
    the bordered rows — a broader :is() list here would out-specificity the
    .reveal transition below and silently kill the fade/rise on everything
    else in the section (the pronounce line, the CTA, etc). */
-.start :is(.spec, .spec__row) {
+.start :is(.spec, .spec__row),
+.contact :is(.ledger, .ledger div, .form__row input, .form__row textarea, .form__row select) {
   transition: border-color var(--duration-slow) var(--ease-out);
 }
 
-.start .reveal {
+.start .reveal,
+.contact .reveal {
   transition:
     opacity var(--duration-base) var(--ease-out),
     transform var(--duration-base) var(--ease-out),
@@ -1175,6 +1205,20 @@ body.nav-open {
 .principal__portrait {
   --ar: 4 / 5;
   margin-bottom: var(--space-4);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.principal__face--fun {
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.principal__portrait:hover .principal__face--fun,
+.principal__portrait.is-pressed .principal__face--fun {
+  opacity: 1;
 }
 
 .ledger div {
@@ -1290,20 +1334,6 @@ body.nav-open {
 .case__media {
   --ar: 16 / 9;
   margin-bottom: var(--space-3);
-  transition: border-color var(--duration-fast) ease;
-}
-
-.case__media > img {
-  transition: transform var(--duration-slow) var(--ease-out);
-}
-
-.case:hover .case__media,
-.case:focus-visible .case__media {
-  border-color: var(--color-border-strong);
-}
-
-.case:hover .case__media > img {
-  transform: scale(1.025);
 }
 
 .case__meta {
@@ -1943,7 +1973,10 @@ body.nav-open {
   }
 
   .start,
+  .contact,
+  body:has(#contact[data-lights]) .site-footer,
   .start :is(p, h2, dt, dd, span, div, dl, a:not(.btn)),
+  .contact :is(p, h2, dt, dd, span, div, dl, a:not(.btn), form, label, input, textarea, select, button),
   .start__lamp,
   .intermezzo__letter {
     transition: none;
@@ -1951,7 +1984,6 @@ body.nav-open {
 
   .btn::after,
   .case__link .arrow,
-  .case__media > img,
   .nav a::after {
     transition: none;
   }
